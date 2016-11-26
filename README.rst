@@ -236,106 +236,106 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 .. _`https://developer.chrome.com/devtools/docs/console`: https://developer.chrome.com/devtools/docs/console
 .. _`iapyeh＠gmail.com`: mailto:iapyeh@gmail.com
 
-.. |IMG1| image:: static/Text_Factory_Help_1.png
+.. |IMG1| image:: static/README_1.png
    :height: 332 px
    :width: 325 px
    :align: center
 
-.. |IMG2| image:: static/Text_Factory_Help_2.png
+.. |IMG2| image:: static/README_2.png
    :height: 437 px
    :width: 310 px
    :align: center
 
-.. |IMG3| image:: static/Text_Factory_Help_3.png
+.. |IMG3| image:: static/README_3.png
    :height: 37 px
    :width: 92 px
 
-.. |IMG4| image:: static/Text_Factory_Help_4.png
+.. |IMG4| image:: static/README_4.png
    :height: 30 px
    :width: 29 px
 
-.. |IMG5| image:: static/Text_Factory_Help_5.png
+.. |IMG5| image:: static/README_5.png
    :height: 33 px
    :width: 32 px
 
-.. |IMG6| image:: static/Text_Factory_Help_6.png
+.. |IMG6| image:: static/README_6.png
    :height: 364 px
    :width: 309 px
    :align: center
 
-.. |IMG7| image:: static/Text_Factory_Help_7.png
+.. |IMG7| image:: static/README_7.png
    :height: 21 px
    :width: 26 px
 
-.. |IMG8| image:: static/Text_Factory_Help_8.png
+.. |IMG8| image:: static/README_8.png
    :height: 22 px
    :width: 29 px
 
-.. |IMG9| image:: static/Text_Factory_Help_9.png
+.. |IMG9| image:: static/README_9.png
    :height: 21 px
    :width: 26 px
 
-.. |IMG10| image:: static/Text_Factory_Help_10.png
+.. |IMG10| image:: static/README_10.png
    :height: 30 px
    :width: 26 px
 
-.. |IMG11| image:: static/Text_Factory_Help_11.png
+.. |IMG11| image:: static/README_11.png
    :height: 29 px
    :width: 26 px
 
-.. |IMG12| image:: static/Text_Factory_Help_12.png
+.. |IMG12| image:: static/README_12.png
    :height: 510 px
    :width: 325 px
    :align: center
 
-.. |IMG13| image:: static/Text_Factory_Help_13.png
+.. |IMG13| image:: static/README_13.png
    :height: 166 px
    :width: 337 px
    :align: center
 
-.. |IMG14| image:: static/Text_Factory_Help_14.png
+.. |IMG14| image:: static/README_14.png
    :height: 202 px
    :width: 697 px
    :align: center
 
-.. |IMG15| image:: static/Text_Factory_Help_15.png
+.. |IMG15| image:: static/README_15.png
    :height: 150 px
    :width: 272 px
    :align: center
 
-.. |IMG16| image:: static/Text_Factory_Help_16.png
+.. |IMG16| image:: static/README_16.png
    :height: 212 px
    :width: 450 px
    :align: center
 
-.. |IMG17| image:: static/Text_Factory_Help_17.png
+.. |IMG17| image:: static/README_17.png
    :height: 92 px
    :width: 589 px
    :align: center
 
-.. |IMG18| image:: static/Text_Factory_Help_18.png
+.. |IMG18| image:: static/README_18.png
    :height: 170 px
    :width: 326 px
    :align: center
 
-.. |IMG19| image:: static/Text_Factory_Help_19.png
+.. |IMG19| image:: static/README_19.png
    :height: 241 px
    :width: 232 px
 
-.. |IMG20| image:: static/Text_Factory_Help_20.png
+.. |IMG20| image:: static/README_20.png
    :height: 549 px
    :width: 258 px
 
-.. |IMG21| image:: static/Text_Factory_Help_21.png
+.. |IMG21| image:: static/README_21.png
    :height: 94 px
    :width: 600 px
    :align: center
 
-.. |IMG22| image:: static/Text_Factory_Help_22.png
+.. |IMG22| image:: static/README_22.png
    :height: 196 px
    :width: 598 px
 
-.. |IMG23| image:: static/Text_Factory_Help_23.png
+.. |IMG23| image:: static/README_23.png
    :height: 305 px
    :width: 556 px
    :align: center
