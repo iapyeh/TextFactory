@@ -239,7 +239,7 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 .. |IMG1| image:: static/index_1.png
    :height: 332 px
    :width: 325 px
-   :align: center
+
 
 .. |IMG2| image:: static/index_2.png
    :height: 437 px
