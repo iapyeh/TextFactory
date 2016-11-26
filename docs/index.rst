@@ -240,11 +240,9 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
    :height: 332 px
    :width: 325 px
 
-
 .. |IMG2| image:: static/index_2.png
    :height: 437 px
    :width: 310 px
-   :align: center
 
 .. |IMG3| image:: static/index_3.png
    :height: 37 px
@@ -261,7 +259,6 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 .. |IMG6| image:: static/index_6.png
    :height: 364 px
    :width: 309 px
-   :align: center
 
 .. |IMG7| image:: static/index_7.png
    :height: 21 px
@@ -286,37 +283,30 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 .. |IMG12| image:: static/index_12.png
    :height: 510 px
    :width: 325 px
-   :align: center
 
 .. |IMG13| image:: static/index_13.png
    :height: 166 px
    :width: 337 px
-   :align: center
 
 .. |IMG14| image:: static/index_14.png
    :height: 202 px
    :width: 697 px
-   :align: center
 
 .. |IMG15| image:: static/index_15.png
    :height: 150 px
    :width: 272 px
-   :align: center
 
 .. |IMG16| image:: static/index_16.png
    :height: 212 px
    :width: 450 px
-   :align: center
 
 .. |IMG17| image:: static/index_17.png
    :height: 92 px
    :width: 589 px
-   :align: center
 
 .. |IMG18| image:: static/index_18.png
    :height: 170 px
    :width: 326 px
-   :align: center
 
 .. |IMG19| image:: static/index_19.png
    :height: 241 px
@@ -329,7 +319,6 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 .. |IMG21| image:: static/index_21.png
    :height: 94 px
    :width: 600 px
-   :align: center
 
 .. |IMG22| image:: static/index_22.png
    :height: 196 px
@@ -338,4 +327,3 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 .. |IMG23| image:: static/index_23.png
    :height: 305 px
    :width: 556 px
-   :align: center
