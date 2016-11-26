@@ -236,106 +236,106 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 .. _`https://developer.chrome.com/devtools/docs/console`: https://developer.chrome.com/devtools/docs/console
 .. _`iapyeh＠gmail.com`: mailto:iapyeh@gmail.com
 
-.. |IMG1| image:: static/index_1.png
+.. |IMG1| image:: static/ndex_1.png
    :height: 332 px
    :width: 325 px
    :align: center
 
-.. |IMG2| image:: static/index_2.png
+.. |IMG2| image:: static/ndex_2.png
    :height: 437 px
    :width: 310 px
    :align: center
 
-.. |IMG3| image:: static/index_3.png
+.. |IMG3| image:: static/ndex_3.png
    :height: 37 px
    :width: 92 px
 
-.. |IMG4| image:: static/index_4.png
+.. |IMG4| image:: static/ndex_4.png
    :height: 30 px
    :width: 29 px
 
-.. |IMG5| image:: static/index_5.png
+.. |IMG5| image:: static/ndex_5.png
    :height: 33 px
    :width: 32 px
 
-.. |IMG6| image:: static/index_6.png
+.. |IMG6| image:: static/ndex_6.png
    :height: 364 px
    :width: 309 px
    :align: center
 
-.. |IMG7| image:: static/index_7.png
+.. |IMG7| image:: static/ndex_7.png
    :height: 21 px
    :width: 26 px
 
-.. |IMG8| image:: static/index_8.png
+.. |IMG8| image:: static/ndex_8.png
    :height: 22 px
    :width: 29 px
 
-.. |IMG9| image:: static/index_9.png
+.. |IMG9| image:: static/ndex_9.png
    :height: 21 px
    :width: 26 px
 
-.. |IMG10| image:: static/index_10.png
+.. |IMG10| image:: static/ndex_10.png
    :height: 30 px
    :width: 26 px
 
-.. |IMG11| image:: static/index_11.png
+.. |IMG11| image:: static/ndex_11.png
    :height: 29 px
    :width: 26 px
 
-.. |IMG12| image:: static/index_12.png
+.. |IMG12| image:: static/ndex_12.png
    :height: 510 px
    :width: 325 px
    :align: center
 
-.. |IMG13| image:: static/index_13.png
+.. |IMG13| image:: static/ndex_13.png
    :height: 166 px
    :width: 337 px
    :align: center
 
-.. |IMG14| image:: static/index_14.png
+.. |IMG14| image:: static/ndex_14.png
    :height: 202 px
    :width: 697 px
    :align: center
 
-.. |IMG15| image:: static/index_15.png
+.. |IMG15| image:: static/ndex_15.png
    :height: 150 px
    :width: 272 px
    :align: center
 
-.. |IMG16| image:: static/index_16.png
+.. |IMG16| image:: static/ndex_16.png
    :height: 212 px
    :width: 450 px
    :align: center
 
-.. |IMG17| image:: static/index_17.png
+.. |IMG17| image:: static/ndex_17.png
    :height: 92 px
    :width: 589 px
    :align: center
 
-.. |IMG18| image:: static/index_18.png
+.. |IMG18| image:: static/ndex_18.png
    :height: 170 px
    :width: 326 px
    :align: center
 
-.. |IMG19| image:: static/index_19.png
+.. |IMG19| image:: static/ndex_19.png
    :height: 241 px
    :width: 232 px
 
-.. |IMG20| image:: static/index_20.png
+.. |IMG20| image:: static/ndex_20.png
    :height: 549 px
    :width: 258 px
 
-.. |IMG21| image:: static/index_21.png
+.. |IMG21| image:: static/ndex_21.png
    :height: 94 px
    :width: 600 px
    :align: center
 
-.. |IMG22| image:: static/index_22.png
+.. |IMG22| image:: static/ndex_22.png
    :height: 196 px
    :width: 598 px
 
-.. |IMG23| image:: static/index_23.png
+.. |IMG23| image:: static/ndex_23.png
    :height: 305 px
    :width: 556 px
    :align: center
