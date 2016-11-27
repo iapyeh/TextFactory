@@ -15,6 +15,7 @@ By Yeh, Hsin Yuan
 
 .. toctree:: 
     :maxdepth: 2
+    :hidden:
 
     index_zh_TW
 
