@@ -11,8 +11,6 @@ Text Factory Help
 
 Version 2015/2/26
 
-By Yeh, Hsin Yuan
-
 This idea of this google-doc add-on is to save users time by providing several text utilities. With this add-on, users can insert datetime from the pulldown menu directly. It also helps users to add parentheses to selection, add thousands separators to numbers and do conversion between width form of fonts. The datetime format is customizable. It can be used in different cultural context.
 
 .. _he53612f1f39167562133222e366441:
