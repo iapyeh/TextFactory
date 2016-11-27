@@ -13,12 +13,6 @@ Version 2015/2/26
 
 By Yeh, Hsin Yuan
 
-.. toctree:: 
-    :maxdepth: 2
-    :hidden:
-
-    index_zh_TW
-
 This idea of this google-doc add-on is to save users time by providing several text utilities. With this add-on, users can insert datetime from the pulldown menu directly. It also helps users to add parentheses to selection, add thousands separators to numbers and do conversion between width form of fonts. The datetime format is customizable. It can be used in different cultural context.
 
 .. _he53612f1f39167562133222e366441:
@@ -116,9 +110,7 @@ Add Thousands Separator
 
     This function adds thousands separators into your selection. Only the numbers in the selection would be applied.
 
-.. _h3248231c6e2d557827121a17741e487e:
-
-\ |IMG17|\ ===========
+\ |IMG17|\ 
 
 .. _h1517781f5a4a4d603c1b391a14342f58:
 
