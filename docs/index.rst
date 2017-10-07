@@ -13,15 +13,6 @@ Version 2015/2/26
 
 This idea of this google-doc add-on is to save users time by providing several text utilities. With this add-on, users can insert datetime from the pulldown menu directly. It also helps users to add parentheses to selection, add thousands separators to numbers and do conversion between width form of fonts. The datetime format is customizable. It can be used in different cultural context.
 
-.. _he53612f1f39167562133222e366441:
-
-Release Note (Mar 5, 2016)
-==========================
-
-    A new version has been updated.
-
-    You can now add a “*” in the format to remove the leading zero. For example, if “%d” yields “02”, then the “%*d” would be “2”. This is also valid for %h, %j, %m,...ect.
-
 .. _h2e5d756ef165210291d424e27125c71:
 
 Insert Date
@@ -141,49 +132,49 @@ Conversion of Fullwidth/Halfwidth Punctuations
     This function is only available for CJK locale. In context of punctuations, the mappings between fullwidth and halfwidth forms are different. For example, the halfwidth full stop “.” should maps to “。”, not “\ |STYLE0|\ ”(this is what the above “Conversion of Fullwidth/Halfwidth” does). This function only converts punctuation symbols in CJK writing traditions. Below is the mapping table of the punctuation conversion:
 
 
-+-------------+-------------+-------------+-------------+
-|\ |STYLE1|\  |             |\ |STYLE2|\  |             |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE3|\  |\ |STYLE4|\  |\ |STYLE5|\  |\ |STYLE6|\  |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE7|\  |\ |STYLE8|\  |\ |STYLE9|\  |\ |STYLE10|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE11|\ |\ |STYLE12|\ |\ |STYLE13|\ |\ |STYLE14|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE15|\ |\ |STYLE16|\ |\ |STYLE17|\ |\ |STYLE18|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE19|\ |\ |STYLE20|\ |\ |STYLE21|\ |\ |STYLE22|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE23|\ |\ |STYLE24|\ |\ |STYLE25|\ |\ |STYLE26|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE27|\ |\ |STYLE28|\ |\ |STYLE29|\ |\ |STYLE30|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE31|\ |\ |STYLE32|\ |\ |STYLE33|\ |\ |STYLE34|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE35|\ |\ |STYLE36|\ |\ |STYLE37|\ |\ |STYLE38|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE39|\ |\ |STYLE40|\ |\ |STYLE41|\ |\ |STYLE42|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE43|\ |\ |STYLE44|\ |\ |STYLE45|\ |\ |STYLE46|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE47|\ |\ |STYLE48|\ |\ |STYLE49|\ |\ |STYLE50|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE51|\ |\ |STYLE52|\ |\ |STYLE53|\ |\ |STYLE54|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE55|\ |\ |STYLE56|\ |\ |STYLE57|\ |\ |STYLE58|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE59|\ |\ |STYLE60|\ |\ |STYLE61|\ |\ |STYLE62|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE63|\ |\ |STYLE64|\ |\ |STYLE65|\ |\ |STYLE66|\ |
-+-------------+-------------+-------------+-------------+
-|\ |STYLE67|\ |\ |STYLE68|\ |\ |STYLE69|\ |\ |STYLE70|\ |
-+-------------+-------------+-------------+-------------+
-|             |             |\ |STYLE71|\ |\ |STYLE72|\ |
-+-------------+-------------+-------------+-------------+
-|             |             |\ |STYLE73|\ |\ |STYLE74|\ |
-+-------------+-------------+-------------+-------------+
-|             |             |\ |STYLE75|\ |\ |STYLE76|\ |
-+-------------+-------------+-------------+-------------+
++----------------------+-------------+-------------+-------------+
+|Halfwidth To Fullwidth|             |\ |STYLE1|\  |             |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE2|\           |\ |STYLE3|\  |\ |STYLE4|\  |\ |STYLE5|\  |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE6|\           |\ |STYLE7|\  |\ |STYLE8|\  |\ |STYLE9|\  |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE10|\          |\ |STYLE11|\ |\ |STYLE12|\ |\ |STYLE13|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE14|\          |\ |STYLE15|\ |\ |STYLE16|\ |\ |STYLE17|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE18|\          |\ |STYLE19|\ |\ |STYLE20|\ |\ |STYLE21|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE22|\          |\ |STYLE23|\ |\ |STYLE24|\ |\ |STYLE25|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE26|\          |\ |STYLE27|\ |\ |STYLE28|\ |\ |STYLE29|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE30|\          |\ |STYLE31|\ |\ |STYLE32|\ |\ |STYLE33|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE34|\          |\ |STYLE35|\ |\ |STYLE36|\ |\ |STYLE37|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE38|\          |\ |STYLE39|\ |\ |STYLE40|\ |\ |STYLE41|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE42|\          |\ |STYLE43|\ |\ |STYLE44|\ |\ |STYLE45|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE46|\          |\ |STYLE47|\ |\ |STYLE48|\ |\ |STYLE49|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE50|\          |\ |STYLE51|\ |\ |STYLE52|\ |\ |STYLE53|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE54|\          |\ |STYLE55|\ |\ |STYLE56|\ |\ |STYLE57|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE58|\          |\ |STYLE59|\ |\ |STYLE60|\ |\ |STYLE61|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE62|\          |\ |STYLE63|\ |\ |STYLE64|\ |\ |STYLE65|\ |
++----------------------+-------------+-------------+-------------+
+|\ |STYLE66|\          |\ |STYLE67|\ |\ |STYLE68|\ |\ |STYLE69|\ |
++----------------------+-------------+-------------+-------------+
+|                      |             |\ |STYLE70|\ |\ |STYLE71|\ |
++----------------------+-------------+-------------+-------------+
+|                      |             |\ |STYLE72|\ |\ |STYLE73|\ |
++----------------------+-------------+-------------+-------------+
+|                      |             |\ |STYLE74|\ |\ |STYLE75|\ |
++----------------------+-------------+-------------+-------------+
 
     
 
@@ -194,6 +185,7 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 -------------------------------------------------------------
 
 #. Open the Chrome and a Google Docs Document.
+
 #. Open the sidebar of the TextFactory by “View more options”
 
 \ |IMG20|\ 
@@ -204,7 +196,7 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 
 #. Open the javascript console with keyboard shortcut:
 
-    \ |STYLE77|\  
+    \ |STYLE76|\  
 
     4.1 For MS Windows users, please open the developer tool  by Ctrl+Shift+J , then click on the tab of “Console”, it would something like this:
 
@@ -219,173 +211,190 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 \ |IMG25|\ 
 
 #. please take a screenshot of the console which includes the message on the console as much as possible. 
+
 #. Appreciation! it’s all. Please mail the screenshots to me at \ |LINK2|\  
 
-\ |STYLE78|\ \ |LINK3|\ 
+\ |STYLE77|\  \ |LINK3|\ 
 
-\ |STYLE79|\ \ |LINK4|\ 
+\ |STYLE78|\  \ |LINK4|\ 
 
+.. _h5d303e73368631b6320494219743f2d:
+
+Release Notes
+=============
+
+October 7th, 2017
+
+Add new formats: %+d, %enB and %enb. For inserting date string like "7th October 2017".
+
+.. _h5154127227d182278c623166545415:
+
+Mar 5th, 2016
+-------------
+
+You can now add a “\*” in the format to remove the leading zero. For example, if “%d” yields “02”, then the “%\*d” would be “2”. This is also valid for %h, %j, %m,...ect.
+
+
+.. bottom of content
 
 
 .. |STYLE0| replace:: **．**
 
-.. |STYLE1| replace:: **Halfwidth To Fullwidth**
+.. |STYLE1| replace:: **Fullwidth To Halfwidth**
 
-.. |STYLE2| replace:: **Fullwidth To Halfwidth**
+.. |STYLE2| replace:: **‘**
 
 .. |STYLE3| replace:: **‘**
 
 .. |STYLE4| replace:: **‘**
 
-.. |STYLE5| replace:: **‘**
+.. |STYLE5| replace:: **'**
 
-.. |STYLE6| replace:: **'**
+.. |STYLE6| replace:: **“**
 
 .. |STYLE7| replace:: **“**
 
 .. |STYLE8| replace:: **“**
 
-.. |STYLE9| replace:: **“**
+.. |STYLE9| replace:: **"**
 
-.. |STYLE10| replace:: **"**
+.. |STYLE10| replace:: **{T}**
 
-.. |STYLE11| replace:: **{T}**
+.. |STYLE11| replace:: **｛T｝**
 
 .. |STYLE12| replace:: **｛T｝**
 
-.. |STYLE13| replace:: **｛T｝**
+.. |STYLE13| replace:: **{T}**
 
-.. |STYLE14| replace:: **{T}**
+.. |STYLE14| replace:: **(T)**
 
-.. |STYLE15| replace:: **(T)**
+.. |STYLE15| replace:: **（T）**
 
 .. |STYLE16| replace:: **（T）**
 
-.. |STYLE17| replace:: **（T）**
+.. |STYLE17| replace:: **(T)**
 
-.. |STYLE18| replace:: **(T)**
+.. |STYLE18| replace:: **[T]**
 
-.. |STYLE19| replace:: **[T]**
+.. |STYLE19| replace:: **［T］**
 
 .. |STYLE20| replace:: **［T］**
 
-.. |STYLE21| replace:: **［T］**
+.. |STYLE21| replace:: **[T]**
 
-.. |STYLE22| replace:: **[T]**
+.. |STYLE22| replace:: **[[T]]**
 
-.. |STYLE23| replace:: **[[T]]**
+.. |STYLE23| replace:: **『T』**
 
 .. |STYLE24| replace:: **『T』**
 
-.. |STYLE25| replace:: **『T』**
+.. |STYLE25| replace:: **[[T]]**
 
-.. |STYLE26| replace:: **[[T]]**
+.. |STYLE26| replace:: **,**
 
-.. |STYLE27| replace:: **,**
+.. |STYLE27| replace:: **，**
 
 .. |STYLE28| replace:: **，**
 
-.. |STYLE29| replace:: **，**
+.. |STYLE29| replace:: **,**
 
-.. |STYLE30| replace:: **,**
+.. |STYLE30| replace:: **.**
 
-.. |STYLE31| replace:: **.**
+.. |STYLE31| replace:: **。**
 
 .. |STYLE32| replace:: **。**
 
-.. |STYLE33| replace:: **。**
+.. |STYLE33| replace:: **.**
 
-.. |STYLE34| replace:: **.**
+.. |STYLE34| replace:: **..**
 
-.. |STYLE35| replace:: **..**
+.. |STYLE35| replace:: **‥**
 
 .. |STYLE36| replace:: **‥**
 
-.. |STYLE37| replace:: **‥**
+.. |STYLE37| replace:: **..**
 
-.. |STYLE38| replace:: **..**
+.. |STYLE38| replace:: **...**
 
-.. |STYLE39| replace:: **...**
+.. |STYLE39| replace:: **…**
 
 .. |STYLE40| replace:: **…**
 
-.. |STYLE41| replace:: **…**
+.. |STYLE41| replace:: **...**
 
-.. |STYLE42| replace:: **...**
+.. |STYLE42| replace:: **<T>**
 
-.. |STYLE43| replace:: **<T>**
+.. |STYLE43| replace:: **〈T〉**
 
 .. |STYLE44| replace:: **〈T〉**
 
-.. |STYLE45| replace:: **〈T〉**
+.. |STYLE45| replace:: **<T>**
 
-.. |STYLE46| replace:: **<T>**
+.. |STYLE46| replace:: **<<T>>**
 
-.. |STYLE47| replace:: **<<T>>**
+.. |STYLE47| replace:: **《T》**
 
 .. |STYLE48| replace:: **《T》**
 
-.. |STYLE49| replace:: **《T》**
+.. |STYLE49| replace:: **<<T>>**
 
-.. |STYLE50| replace:: **<<T>>**
+.. |STYLE50| replace:: **!**
 
-.. |STYLE51| replace:: **!**
+.. |STYLE51| replace:: **！**
 
 .. |STYLE52| replace:: **！**
 
-.. |STYLE53| replace:: **！**
+.. |STYLE53| replace:: **!**
 
-.. |STYLE54| replace:: **!**
+.. |STYLE54| replace:: **?**
 
-.. |STYLE55| replace:: **?**
+.. |STYLE55| replace:: **？**
 
 .. |STYLE56| replace:: **？**
 
-.. |STYLE57| replace:: **？**
+.. |STYLE57| replace:: **?**
 
-.. |STYLE58| replace:: **?**
+.. |STYLE58| replace:: **:**
 
-.. |STYLE59| replace:: **:**
+.. |STYLE59| replace:: **：**
 
 .. |STYLE60| replace:: **：**
 
-.. |STYLE61| replace:: **：**
+.. |STYLE61| replace:: **:**
 
-.. |STYLE62| replace:: **:**
+.. |STYLE62| replace:: **-**
 
-.. |STYLE63| replace:: **-**
+.. |STYLE63| replace:: **—**
 
 .. |STYLE64| replace:: **—**
 
-.. |STYLE65| replace:: **—**
+.. |STYLE65| replace:: **-**
 
-.. |STYLE66| replace:: **-**
+.. |STYLE66| replace:: **;**
 
-.. |STYLE67| replace:: **;**
+.. |STYLE67| replace:: **；**
 
 .. |STYLE68| replace:: **；**
 
-.. |STYLE69| replace:: **；**
+.. |STYLE69| replace:: **;**
 
-.. |STYLE70| replace:: **;**
+.. |STYLE70| replace:: **、**
 
-.. |STYLE71| replace:: **、**
+.. |STYLE71| replace:: **､**
 
-.. |STYLE72| replace:: **､**
+.. |STYLE72| replace:: **－**
 
-.. |STYLE73| replace:: **－**
+.. |STYLE73| replace:: **-**
 
-.. |STYLE74| replace:: **-**
+.. |STYLE74| replace:: **—**
 
-.. |STYLE75| replace:: **—**
+.. |STYLE75| replace:: **-**
 
-.. |STYLE76| replace:: **-**
+.. |STYLE76| replace:: **[Before you are going to press on the keyboard, please mouse-click on any empty area in the sidebar again to make sure the sidebar being the focus frame.]**
 
-.. |STYLE77| replace:: **[Before you are going to press on the keyboard, please mouse-click on any empty area in the sidebar again to make sure the sidebar being the focus frame.]**
+.. |STYLE77| replace:: **If you have any question about the console, you may consult this document of Google:**
 
-.. |STYLE78| replace:: **If you have any question about the console, you may consult this document of Google:**
-
-.. |STYLE79| replace:: **Welcome any suggestion and comments. Contacts:**
+.. |STYLE78| replace:: **Welcome any suggestion and comments. Contacts:**
 
 
 .. |LINK1| raw:: html
