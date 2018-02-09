@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+<div style="">
+  <div style="font-size:1.5em">GMT
+       <select id="plus_minus" style="font-size:1.0em;margin:0px 0px;height:35px;padding:0px 15px;">
+          <option value="plus">＋</option>
+          <option value="minus">─</option>
+        </select>
+        <input id="offset" style="font-size:1.0em;width:50px;height:30px;text-align:center"> Hours
+  </div>
+  <div style="margin-top:10px"><button id="okbtn" class="blue">OK</button></div>
+</div>
+
+<script>
+document.addEventListener( "DOMContentLoaded", initialization , false );
+function initialization(){
+  var finish = function(){
+    google.script.host.close()
+  }
+  var render = function(tz){
+    var tzoffset
+    var auto_set = false
+    if (typeof(tz)=='undefined'){
+      tzoffset = new Date().getTimezoneOffset()
+      auto_set = true
+    }
+    else if (typeof(tz)=='string'){
+      tzoffset = parseFloat(tz)
+    }
+    else {
+      tzoffset = new Date().getTimezoneOffset()
+    }
+    if (tzoffset <= 0) {
+      document.getElementById('plus_minus').selectedIndex = 0
+    }
+    else {
+      document.getElementById('plus_minus').selectedIndex = 1
+    }
+    document.getElementById('offset').value = Math.abs(tzoffset)/60
+    document.getElementById('okbtn').onclick = function(){
+      var tzoffset = 0
+      var tzvalue = parseFloat(document.getElementById('offset').value)
+      if (isNaN(tzvalue)) tzoffset = new Date().getTimezoneOffset()
+      else if (document.getElementById('plus_minus').selectedIndex===0){
+          tzoffset = - (tzvalue*60)
+      }
+      else{
+          tzoffset = (tzvalue*60)
+      }
+      google.script.run.withSuccessHandler(finish).withFailureHandler(finish).setTimezoneOffset(tzoffset);
+    }
+  }
+  google.script.run.withSuccessHandler(render).getTimezoneOffset();
+}
+</script>
