@@ -1,0 +1,1919 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+<style>
+select {
+  /* rewrite add-ons.css*/
+  padding: 4px 19px 4px 4px;
+}
+.tab {
+  position:relative;
+  left:0;
+  top:0;
+  display:none;
+  padding:5px 2px 0px 10px;
+}
+.tab.active{
+  display:block;
+}
+.tab-title{
+  border:solid 1px #c0c0c0;
+  display:inline-block;
+  position:relative;
+  padding:5px 8px;
+  border-bottom:none;
+  -webkit-border-top-left-radius: 2px;
+  -webkit-border-top-right-radius: 2px;
+  -moz-border-radius-topleft: 2px;
+  -moz-border-radius-topright: 2px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  cursor:pointer;
+  text-align:center;
+  width:24%;
+  font-size:0.95em;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  margin-bottom:-5px;
+}
+.tab-title.active,.tab-title.active:hover{
+  top:1px;
+  background-color:white;
+  -webkit-box-shadow: none;
+  -moz-box-shadow:    none;
+  box-shadow:         none;
+}
+.tab-title:hover{
+  background-color:#f0f0f0;  
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(50, 50, 50, 0.25);
+  -moz-box-shadow:    0px 0px 1px 0px rgba(50, 50, 50, 0.25);
+  box-shadow:         0px 0px 1px 0px rgba(50, 50, 50, 0.25);
+}
+.tab-bar {
+  border-bottom:solid 1px #c0c0c0;
+  margin-bottom:10px;
+  padding:0px 10px;
+}
+.tab > .block{
+    margin-top:30px  !important;
+    padding-left:10px;
+}
+.tab > .block:first-child{
+    margin-top:12px  !important;
+}
+.tab > .block > label:first-child {
+  margin-bottom:5px;
+  display:block;
+}
+
+button.small{
+    min-width:35px;
+    height:25px;
+    margin-left:3px;
+    margin-top:3px;
+}
+select option{
+  text-align:left;
+}
+
+/* start of help */
+.help:hover{
+  cursor:help;
+}
+select.help:hover,button.help:hover{
+  outline:none;
+  box-shadow:none;
+  cursor:inherit;
+}
+.helpframe{
+  display:none;
+  border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  -webkit-border-radius: 5px; 
+  border: 1px solid #c0c0c0;
+  color:black;
+  padding:5px;
+  width:95%;
+  margin-top:2px;
+  overflow: hidden;
+}
+.helpframe{ /* temporary disable */
+  border:none;
+  width:100%;
+  padding:0px;
+}
+.helpframetitle{
+  margin:-5px -5px 2px -5px;
+  padding:2px 0px;
+  background-color:#f0f0f0;
+  text-align:right;
+  display:none;/* temporary disable */
+}
+.helpframetitle .closebtn{
+  color:#000000;
+  margin-right:4px;
+  padding: 0px 2px;
+  font-weight:bold;
+  text-decoration:none;
+}
+.helpframetitle .closebtn:hover{
+  color:#f0f0f0;
+  background-color:#0c0c0c;
+  margin-right:4px;
+  padding: 1px 3px;
+  font-weight:bold;
+  text-decoration:none;
+}
+.helppos{
+  display:none;
+  position:absolute;
+  z-index:99;
+  background-color:black;
+  color:white;
+  padding:5px;
+  margin-right:10px;
+  overflow: hidden;
+  opacity:0;
+}
+.helpcontent{
+  overflow:hidden;
+}
+#helps{
+  position:absolute;
+  left:-500px;
+  top:-10000px;
+  padding:5px;
+  visibility:hidden;
+  width:80%;
+  overflow:hidden;
+}
+#helps table td,.helpcontent table td{
+  padding:2px 10px;
+}
+#helps table th,.helpcontent table th{
+  vertical-align:top;
+  padding:2px;
+  border-bottom:solid 1px #ebebeb;
+}
+#helps p,.helpcontent p{
+  margin-top:1px;
+}
+/* end of help */
+
+/* make option be easier to click */
+option{
+  padding:2px;
+  border-bottom:solid 1px white;
+}
+option.option-label+option{
+  border-bottom:solid 1px #d0d0d0;
+}
+option.option-label+option:last-child{
+  border-bottom:solid 1px white;
+}
+.flat-btn-box{
+  height:90px;
+  width:255px;
+}
+.flat-btn{
+  outline:#c0c0c0 solid thin;
+  display:inline-block;
+  float:left;
+  width:25px;
+  height:25px;
+  line-height:25px;
+  margin:2px;
+  cursor:pointer;
+  text-align:center;
+}
+.flat-btn-zoomin{
+  display:none;
+  position:absolute;
+  border:solid 3px #4d90fe;
+  height:45px;
+  width:60px;
+  z-index:99;
+  background-color:white;
+  font-size:1.75em;
+  text-align:center;
+  line-height:45px;
+}
+/*loading */
+#loading{
+  display:none;
+  position:absolute;
+  height:100px;
+  text-align:center;
+  top:50px;
+  left:0px;
+  background-color:rgba(255,255,255,0.85);
+}
+#loading div{
+  padding: 0px 0px 30px 0px;
+  background-image: url('data:image/gif;base64,R0lGODlhEAALAPQAAP///wAAANra2tDQ0Orq6gYGBgAAAC4uLoKCgmBgYLq6uiIiIkpKSoqKimRkZL6+viYmJgQEBE5OTubm5tjY2PT09Dg4ONzc3PLy8ra2tqCgoMrKyu7u7gAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCwAAACwAAAAAEAALAAAFLSAgjmRpnqSgCuLKAq5AEIM4zDVw03ve27ifDgfkEYe04kDIDC5zrtYKRa2WQgAh+QQJCwAAACwAAAAAEAALAAAFJGBhGAVgnqhpHIeRvsDawqns0qeN5+y967tYLyicBYE7EYkYAgAh+QQJCwAAACwAAAAAEAALAAAFNiAgjothLOOIJAkiGgxjpGKiKMkbz7SN6zIawJcDwIK9W/HISxGBzdHTuBNOmcJVCyoUlk7CEAAh+QQJCwAAACwAAAAAEAALAAAFNSAgjqQIRRFUAo3jNGIkSdHqPI8Tz3V55zuaDacDyIQ+YrBH+hWPzJFzOQQaeavWi7oqnVIhACH5BAkLAAAALAAAAAAQAAsAAAUyICCOZGme1rJY5kRRk7hI0mJSVUXJtF3iOl7tltsBZsNfUegjAY3I5sgFY55KqdX1GgIAIfkECQsAAAAsAAAAABAACwAABTcgII5kaZ4kcV2EqLJipmnZhWGXaOOitm2aXQ4g7P2Ct2ER4AMul00kj5g0Al8tADY2y6C+4FIIACH5BAkLAAAALAAAAAAQAAsAAAUvICCOZGme5ERRk6iy7qpyHCVStA3gNa/7txxwlwv2isSacYUc+l4tADQGQ1mvpBAAIfkECQsAAAAsAAAAABAACwAABS8gII5kaZ7kRFGTqLLuqnIcJVK0DeA1r/u3HHCXC/aKxJpxhRz6Xi0ANAZDWa+kEAA7AAAAAAAAAAAA');
+  background-repeat:no-repeat;
+  background-position:center;
+}
+
+
+.modal-dialog{
+  display:none;
+  width:60%;
+  margin-left:10%;
+  z-index:99;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  background: #fff;
+  background-clip: padding-box;
+  border: 1px solid #acacac;
+  border: 1px solid rgba(0,0,0,.333);
+  outline: 0;
+  position: absolute;
+  color: #000;
+  padding: 15px 21px;  
+}
+.modal-dialog button{
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background-color: #f5f5f5;
+  background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+  background-image: -moz-linear-gradient(top,#f5f5f5,#f1f1f1);
+  background-image: -ms-linear-gradient(top,#f5f5f5,#f1f1f1);
+  background-image: -o-linear-gradient(top,#f5f5f5,#f1f1f1);
+  background-image: linear-gradient(top,#f5f5f5,#f1f1f1);
+  border: 1px solid #dcdcdc;
+  border: 1px solid rgba(0,0,0,0.1);
+  color: #333;
+  cursor: default;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: bold;
+  height: 29px;
+  line-height: 27px;
+  margin:0;
+  min-width: 72px;
+  outline: 0;
+  padding: 0 8px;  
+}
+.modal-dialog button+button{
+  margin-left:20px;
+}
+.modal-dialog .x{
+  font-weight: bold;
+  text-align: right;
+  margin-top: -5px;
+  margin-right: -5px;
+  color: #a0a0a0;
+  cursor:pointer;
+}
+/* end of loading */
+.gray {
+  background-color:rgba(230, 230, 230, 0.1);
+}
+</style>
+<div class="sidebar" style="padding:5px 0px;margin:-8px">
+  <div class="tab-bar">
+    <div class="tab-title active" tab="t1" onclick="setActiveTab('t1')"><span class="i18n">Insert Date</span></div>
+    <!-- temporaryly disabled for not been tested new feature 
+    <div class="tab-title" tab="t3" onclick="setActiveTab('t3')"><span class="i18n">Insert Text</span></div>
+    -->
+    <div class="tab-title" tab="t2" onclick="setActiveTab('t2')"><span class="i18n">Format Text</span></div>
+  </div>
+  <div class="tab active" tab="t1">
+          <div class="block form-group">
+            <label><span class="i18n">Time Zone</span>: <a href="#" onclick="changeTZ()"><span id="tzinfo"></span></a></label>
+          </div>
+          <div class="block form-group" id="seld">
+            <label><span class="i18n">Select Day</span>:</label>
+            <select id="basedt" onchange="updateBasetimeType(this)">
+              <option class="i18n" value="-1">Yesterday</option>
+              <option class="i18n" value="0" selected>Today</option>
+              <option class="i18n" value="1">Tomorrow</option>
+            </select>
+          </div>
+          <div class="block form-group">
+            <label><span class="i18n">Select Format</span>:</label>
+            <select id="insdt" style="width:85%;" onchange="dateFormatChanged(this)"><option></option></select>
+            <a id="insdt1st" class="i18n">Set to be default format</a>
+          </div>
+          <div class="block form-group">
+            <button class="i18n blue" id="insbtn" onclick="insertDateTimeSelect()">Insert Date</button>
+            <button class="i18n" id="insdteditbtn" onclick="showHelp('eo',true)">Edit Formats</button>
+            <button class="i18n" style="display:none;" id="insdteditbtncls" helpname="eo" onclick="closeHelp(this)">Close Editing</button>  
+            
+          </div>
+          <span class="helppos" helpname="eo"></span>
+
+ </div>
+ <!-- temporaryly disabled for not been tested new feature 
+ <div class="tab" tab="t3" style="min-height:500px">          
+          <div class="block form-groups" id="textoptions-allgroup">
+            <label><span class="i18n help" helpname="tsg" helptype="hover">Select Group</span>:</label>
+            <select style="width:75%;" onchange="renderTextOptions(null,this.selectedIndex)"></select>
+          </div>      
+          <div class="block form-group" id="textoptions-group">
+            <label><span class="i18n help" helpname="tst" helptype="hover">Select Text</span>:</label>
+            <select style="width:75%;"></select>
+          </div>
+          <div class="block form-group" id="textoptions-buttons">
+            <button class="blue" id="instxtbtn" onclick="insertTextOption()"><span  class="help i18n" helpname="itb" helptype="hover">Insert Text</span></button>
+            <button class="" id="opentxtbook" onclick="openTextOptionsFile()"><span  class="help" helpname="etb" helptype="hover">Edit Texts</span></button>
+            <br/><input style="margin-top:5px" type="checkbox" id="cachetextopitions" checked onchange="textOptionsUseCache()"><span class="i18n help" helpname="uco" helptype="hover">Use cached options</span>
+          </div>
+ </div>
+ -->
+ <div class="tab" tab="t2" style="min-height:500px">
+      <div class="block form-group">
+          <label class="help" helpname="pip" helptype="hover"><span class="i18n">Put into Parentheses</span>:</label>
+          <div class="flat-btn-box" id="pip"></div>
+      </div>
+      <div class="block form-group">
+          <label class="help" helpname="fwc" helptype="hover"><span class="i18n">Replace with Character</span>:</label>
+          <div class="flat-btn-box" id="fwc" style="height:30px"></div>
+      </div>
+      <div class="block form-group">
+          <label class="help" helpname="ts" helptype="hover"><span class="i18n">Add Thousands Separator</span>:</label>
+          <button onclick="thousandCommasSelected()">1,000</button>
+      </div>
+      <div class="block form-group">
+          <label class="help" helpname="clc" helptype="hover"><span class="i18n">Convert Letter Case</span>:</label>
+            <button onclick="caseConvertSelected(1)" class="help" helpname="clcl" helptype="hover">lower</button>
+            <button onclick="caseConvertSelected(3)" class="help" helpname="clcc" helptype="hover">Title</button>
+            <button onclick="caseConvertSelected(2)" class="help" helpname="clcu" helptype="hover">UPPER</button>
+      </div>
+      <div class="block form-group" id="cofhp">
+          <label class="help" helpname="cwfp" helptype="hover"><span class="i18n">Conversion of Fullwidth/Halfwidth Punctuations</span>:</label>
+            <input type="checkbox" id="cwfp-csc" class="puncfullhalftype" data="1" style="display:inline-block"/>
+            <label for="cwfp-csc" helpname="cwfp-csc" class="help i18n" helptype="hover">Convert Space Character</label>
+            <br/>
+            <button onclick="puncFullhalfConvertSelected(true)" class="help" helpname="cwfph" helptype="hover">({；!,.})</button>
+            <button onclick="puncFullhalfConvertSelected(false)" class="help" helpname="cwfpf" helptype="hover">（｛；！，。｝）</button>
+            <button onclick="resetUserProperty()" style="display:none">Reset</button>
+      </div>
+      <div class="block form-group">
+          <label class="help" helpname="cwf" helptype="hover"><span class="i18n">Conversion of Fullwidth/Halfwidth</span>:</label>
+            <button onclick="fullhalfConvertSelected(true)" class="help" helpname="cwfh" helptype="hover">123&ABC</button>
+            <button onclick="fullhalfConvertSelected(false)" class="help" helpname="cwff" helptype="hover">１２３＆ＡＢＣ</button>
+          <div style="height:0px;visibility:hidden">placeholder</div>
+      </div>
+      <div class="block form-group">
+        <span style="color:#c0c0c0">version: 2017/11/8</span>
+      </div>      
+  </div><!--end of tab-->
+</div>
+<div id="fbz" class="flat-btn-zoomin"></div>
+<div class="masterhelpframe helpframe">
+  <div class="helpframetitle">
+    <a class="closebtn" onclick="closeHelp(this)">×</a>
+  </div>
+  <div class="helpcontent"></div>
+</div>
+<div id="helps"><!--help content-->
+  <div name="insdt" class="i18n">
+    Click the item to insert it into document
+  </div>
+  <div name="basedt" class="i18n">
+    Set the base date
+  </div>
+  <div name="oim" class="i18n">
+    Modify the format of the three menuitems,i.e. Yesterday's date, Today's date and Tomorrow's date.
+  </div>
+  <div name="eo">
+    <div class="block" style="padding-top:10px;padding-left:10px">
+      <label helpname="cite" helptype="hover" class="help"><span class="i18n">Click Item to Edit</span>:</label>
+      <select onchange="updateDateFormatSelector(this)" id="insdtedit" style="float:left;width:80%;margin-bottom:3px" size="6"></select>
+      <div>
+        <button class="small help" helpname="delbtn" helptype="hover" onclick="handleDFOption(0)" id="optdel">⌫</button><br/>
+        <button class="small help" helpname="mupbtn" helptype="hover" onclick="handleDFOption(-1)" id="optup">↑</button><br/>
+        <button class="small help" helpname="mdnbtn" helptype="hover" onclick="handleDFOption(1)" id="optdown">↓</button>
+      </div>
+      <input type="text" id="dtfmtinput" style="width:80%;margin-top:3px;margin-bottom:3px">
+      <div class="block">
+        <table style="width:98%;margin-top:10px;padding-top:5px;">
+        <thead><tr><th colspan="2" class="i18n">Syntax</th></tr></thead>
+        <tbody>
+        <tr><th>%a</th><td class="i18n">Locale's abbreviated weekday name.</td></tr>
+        <tr><th>%A</th><td class="i18n">Locale's full weekday name.</td></tr>
+        <tr><th>%b</th><td class="i18n">Locale's abbreviated month name.</td></tr>
+        <tr><th>%B</th><td class="i18n">Locale's full month name.</td></tr>
+        <tr><th>%enb</th><td class="i18n">Abbreviated month name in English.</td></tr>
+        <tr><th>%enB</th><td class="i18n">Full month name in English.</td></tr>
+        <tr><th>%d</th><td class="i18n">Day of the month as a decimal number [01,31].</td></tr>
+        <tr><th>%*d</th><td class="i18n">No-leading-zero version [1,31]</td></tr>
+        <tr><th>%+d</th><td><span class="i18n">Day of the month with ordinal suffix</span>[1st,2nd,...]</td></tr>
+        <tr><th>%h</th><td class="i18n">Hour (12-hour clock) as a decimal number [01, 12].</td></tr>
+        <tr><th>%*h</th><td class="i18n">No-leading-zero version [1,12]</td></tr>
+        <tr><th>%H</th><td class="i18n">Hour (24-hour clock) as a decimal number [00, 23].</td></tr>
+        <tr><th>%*H</th><td class="i18n">No-leading-zero version [0,23]</td></tr>
+        <tr><th>%i</th><td class="i18n">Milliseconds, as a decimal number [000, 999].</td></tr>
+        <tr><th>%j</th><td class="i18n">Day of the year as a decimal number [001, 366].</td></tr>
+        <tr><th>%*j</th><td class="i18n">No-leading-zero version [0,366]</td></tr>
+        <tr><th>%m</th><td class="i18n">Month, as a decimal number [01,12].</td></tr>
+        <tr><th>%*m</th><td class="i18n">No-leading-zero version [1,12]</td></tr>
+        <tr><th>%M</th><td class="i18n">Minute, as a decimal number [00, 59].</td></tr>
+        <tr><th>%*M</th><td class="i18n">No-leading-zero version [0, 59]</td></tr>
+        <tr><th>%n</th><td class="i18n">Month, as a decimal number [1,12].</td></tr>
+        <tr><th>%N</th><td class="i18n">Day of the month as a decimal number [1,31].</td></tr>
+        <tr><th>%p</th><td class="i18n">Either AM or PM.</td></tr>
+        <tr><th>%S</th><td class="i18n">Seconds, as a decimal number [00, 59].</td></tr>
+        <tr><th>%*S</th><td class="i18n">No-leading-zero version [0, 59]</td></tr>
+        <tr><th>%U</th><td class="i18n">Week number of the year (Sunday as the first day of the week). All days in a new year preceding the first Sunday are considered to be in week 1.</td></tr>
+        <tr><th>%w</th><td class="i18n">Weekday as a decimal number [0(Sunday), 6].</td></tr>
+        <tr><th>%W</th><td class="i18n">Week number of the year (Monday as the first day of the week). All days in a new year preceding the first Monday are considered to be in week 1.</td></tr>
+        <tr><th>%y</th><td class="i18n">Year without century as a decimal number [00, 99].</td></tr>
+        <tr><th>%*y</th><td class="i18n">No-leading-zero version [0, 99]</td></tr>
+        <tr><th>%Y</th><td class="i18n">Year with century as a decimal number.</td></tr>
+        <tr><th>%Z</th><td class="i18n">Current time zone offset</td></tr>
+        <tr><th>%%</th><td class="i18n">A literal '%' character.</td></tr>
+        <tr class="gray"><th></th><td>Hebrew Calendar</td></tr>
+        <tr><th>%HeY</th><td>Year</td></tr>
+        <tr><th>%HeM</th><td>Month</td></tr>
+        <tr><th>%HeD</th><td>Date</td></tr>
+        <tr><th>%HeE</th><td>Events</td></tr>
+        <tr><th>%HeH</th><td>Hebrew</td></tr>
+        <tr class="gray"><th></th><td>陰曆</td></tr>
+        <tr><th>%HuY</th><td>天干地支年</td></tr>
+        <tr><th>%HuM</th><td>月</td></tr>
+        <tr><th>%HuD</th><td>日</td></tr>
+        </tbody></table>
+        <div style="height:10px;background-color:transparent"></div>
+      </div>      
+    </div>
+  </div>
+  <div name="cite" class="i18n">
+    The 1st item will also be applied to the three menuitems
+  </div>
+  <div name="eobtn" class="i18n">
+    Manage the date-time formats
+  </div>
+  <div name="tefbtn" class="i18n">
+    Toggle between sidebar-formats or menuitem-formats.
+  </div>
+  <div name="updbtn" class="i18n">
+   Update the format to the selected item
+  </div>
+  <div name="addbtn" class="i18n">
+    Add a new format
+  </div>
+  <div name="delbtn" class="i18n">
+    Delete the selected item
+  </div>
+  <div name="mupbtn" class="i18n">
+    Move up the selected item
+  </div>
+  <div name="mdnbtn" class="i18n">
+    Move down the selected item
+  </div>
+  <div name="ftsybtn" class="i18n">
+    Show syntax of format
+  </div>
+  <div name="pip">
+    <span  class="i18n">Put selected text into parentheses. E.g.</span><span style="background-color:#f0f0f0;color:black;"> <span class="i18n">Little Prince</span></span> <span class="i18n">to</span>《<span class="i18n">Little Prince</span>》
+  </div>
+  <div name="fwc">
+    <span  class="i18n">Replace selected text with characters. Usually used as placeholders of real name</span>
+  </div>
+  <div name="ts">
+    <span class="i18n">Add thousand separators to the numbers in selected text. E.g. 1000 to</span> 1,000
+  </div>
+  <div name="clc" class="i18n">
+    Convert letter case in selected text
+  </div>
+  <div name="clcu" class="i18n">
+    To upper case
+  </div>
+  <div name="clcc" class="i18n">
+    To title case
+  </div>
+  <div name="clcl" class="i18n">
+    To lower case
+  </div>
+  <div name="cwfp" class="i18n">
+    Convert punctuations width between full and half in selected text
+  </div>
+  <div name="cwfpf" class="i18n">To full-width</div>
+  <div name="cwfph" class="i18n">To half-width</div>
+  <div name="cwfp-csc" class="i18n">If checked, also convert space characters</div>
+  <div name="cwf" class="i18n">Convert symbols, digits and alphabets between full-width and half-width</div>
+  <div name="cwff" class="i18n">To full-width</div>
+  <div name="cwfh" class="i18n">To half-width</div>
+  <div name="tsg" class="i18n">Change the group of text options</div>
+  <div name="tst" class="i18n">Change the text to be inserted</div>
+  <div name="itb" class="i18n">Insert the selected text to the document</div>
+  <div name="etb" class="i18n">Edit the text group and options. This would open the "TextFactory-TextsOptions" spreadsheet</div>
+  <div name="uco" class="i18n">Use the cached copy of the groups and their texts for faster loading.</div>
+  <div name="sdf" class="i18n">Set to be default format</div>
+</div><!-- end of help content-->
+<span class="helppos" id="helppostmpl" style="display:none"></span>
+<span id="helppostmplpt" style="display:none;position:absolute">▲</span>
+<!--local i18n -->
+<div style="display:none">
+  <span class="localI18n">Are you sure to delete it</span>
+  <span class="localI18n">Unknow</span>
+  <span class="localI18n">Show Syntax</span>
+  <span class="localI18n">Hide Syntax</span>
+  <span class="localI18n">New Format</span>  
+  <span class="localI18n">Input new format here</span>
+  <span class="localI18n">Working</span>
+  <span class="localI18n">Delete this item</span>
+  <span class="localI18n">Reopen the sidebar would update the options</span>
+</div>
+<!--end of local i18n-->
+<div id="loading" class="modal-dialog">
+  <div>
+    <h1><label class="i18n" id="loading-text"></label></h1>
+  </div>
+</div>
+<div id="dialog" class="modal-dialog">
+  <div>
+    <div class="x">x</div>
+    <p class="title"></p>
+    <div><button class="yes i18n">Delete</button><button class="cancel i18n">Cancel</button></div>
+  </div>
+</div>
+<script>
+document.addEventListener( "DOMContentLoaded", initialization , false );
+//global variable
+var serverValues={locale:'en'};
+
+function setActiveTab(name){
+  var tabs = document.querySelectorAll('.tab')
+  for (var i=0;i<tabs.length;i++){
+    if (tabs[i].getAttribute('tab')==name){tabs[i].className='tab active'}
+    else tabs[i].className='tab';
+  }
+  var titles = document.querySelectorAll('.tab-title')
+  for (var i=0;i<titles.length;i++){
+    if (titles[i].getAttribute('tab')==name){titles[i].className='tab-title active'}
+    else titles[i].className='tab-title';
+  }
+}
+
+var loadingCount=0;
+function loading(yes){
+  var title;
+  if (yes) title = (typeof(yes)=='string') ? yes : localI18n('Working')
+  if ((loadingCount<0 && !yes) || (loadingCount>0 && yes)) {
+    if (title) document.getElementById('loading-text').innerHTML = title;
+    loadingCount += yes ? 1 : -1;
+    return;
+  }
+  loadingCount += yes ? 1 : -1;
+  if (loadingCount==1){
+    // start loading
+    document.getElementById('loading-text').innerHTML = title;
+    document.getElementById('loading').style.display='block';
+    document.getElementById('loading').style.top = (window.pageYOffset+50)+'px'
+    document.querySelector('.sidebar').style.opacity = 0.5;  
+  }
+  else{
+    // stop loading
+    document.getElementById('loading').style.display='none';
+    document.querySelector('.sidebar').style.opacity = 1;
+  }
+}
+function stopLoading(){loading(false)}
+
+function confirm(title,callback){
+  var dialog = document.getElementById('dialog')
+  dialog.querySelector('.title').innerHTML = title;
+  dialog.style.display='block';
+  dialog.style.top = (window.pageYOffset+150)+'px'
+  document.querySelector('.sidebar').style.opacity = 0.5;  
+  var cleanup = function(yes){
+    callback(yes)
+    dialog.querySelector('.yes').onclick = null;
+    dialog.querySelector('.cancel').onclick = null;
+    document.querySelector('.sidebar').onclick = null;
+    dialog.querySelector('.x').onclick = null;
+    dialog.querySelector('.title').innerHTML = '';
+    dialog.style.display='none';
+    dialog.style.top = '0px';
+    document.querySelector('.sidebar').style.opacity = 1; 
+  }
+  dialog.querySelector('.yes').onclick = function(){
+    cleanup(true);
+  }
+  dialog.querySelector('.cancel').onclick = function(){
+    cleanup(false);
+  }
+  dialog.querySelector('.x').onclick = function(){
+    cleanup(false);
+  }
+  setTimeout(function(){
+    document.querySelector('.sidebar').onclick = function(){
+      cleanup(false);
+    } 
+  },100)
+}
+function myAlert(title,callback){
+  var dialog = document.getElementById('dialog')
+  dialog.querySelector('.title').innerHTML = title;
+  dialog.style.display='block';
+  dialog.style.top = (window.pageYOffset+150)+'px'
+  document.querySelector('.sidebar').style.opacity = 0.5;
+  var yesHTML = dialog.querySelector('.yes').innerHTML
+  var cleanup = function(yes){
+    callback(yes)
+    dialog.querySelector('.cancel').style.display = ''
+    dialog.querySelector('.yes').innerHTML = yesHTML
+    dialog.querySelector('.yes').onclick = null;
+    dialog.querySelector('.x').onclick = null;
+    dialog.querySelector('.title').innerHTML = '';
+    dialog.style.display='none';
+    dialog.style.top = '0px';
+    document.querySelector('.sidebar').style.opacity = 1; 
+  }
+  dialog.querySelector('.cancel').style.display = 'none'
+  dialog.querySelector('.yes').innerHTML = 'OK'
+  dialog.querySelector('.yes').onclick = function(){
+    cleanup(true);
+  }
+  dialog.querySelector('.x').onclick = function(){
+    cleanup(false);
+  }
+  setTimeout(function(){
+    document.querySelector('.sidebar').onclick = function(){
+      cleanup(false);
+    } 
+  },100)
+}
+/* insert date time */
+function insertDateTimeSelect(){
+  var ele = document.getElementById('insdt');
+  var fmt = ele.options[ele.selectedIndex].value
+  if (fmt==='') return;//do nothing
+  var d = baseTime;
+  var ts = strftime(fmt,d,serverValues.locale);
+  loading(true)
+  google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).insertAtCursor(ts);  
+  //ele.selectedIndex = -1;
+}
+
+/* nubmers */
+
+function thousandCommasSelected(){
+  loading(true)
+  var x = parseInt('1000').toLocaleString()
+  var sp = x.length>4 ? x.substr(1,1) : ',' ;//safari don't support toLocaleString
+  google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).thousandCommasSelected(sp);  
+}
+
+function refreshZeropadBtn(){
+  var ele = document.getElementById('zeropadsize');
+  var s = parseInt(ele.value);
+  var n = zeropad(1,s);
+  document.getElementById('zeropadbtn').innerText=n;
+}
+function zeropadSelected(){
+  var ele = document.getElementById('zeropadsize');
+  var s = parseInt(ele.value);
+  loading(true)
+  google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).zeropadSelected(s);  
+}
+/* tel number */
+function dashSeperateSelected(size){
+  loading(true)
+  google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).dashSeperateSelected(size);  
+}
+/* text convertion */
+function fullhalfConvertSelected(toHalf){
+  var flag = 1+2+4;
+  loading(true)
+  google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).fullhalfConvertSelected(toHalf,flag);  
+}
+function puncFullhalfConvertSelected(toHalf){
+  var eles = document.querySelectorAll('input.puncfullhalftype')
+  var flag = 0;
+  for (var i=0;i<eles.length;i++){
+      if (eles[i].checked) flag+= parseInt(eles[i].getAttribute('data'));
+  }
+  loading(true)
+  google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).puncFullhalfConvertSelected(toHalf,flag);  
+}
+function caseConvertSelected(flag){
+  loading(true)
+  google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).caseConvertSelected(flag);  
+}
+/* flat-btn related */
+function enableFlatBtn(){
+  //generate buttons
+  var pairs = ['《》','〈〉','「」','『』','［］','【】','〖〗','﴾﴿','（）','﹙﹚','｟｠','〔〕','〘〙','〚〛','｛｝','‘’','❛❜','“”','〝〞','❝❞'];
+  var tags = [],pair;
+  for (var i in pairs){
+    pair = pairs[i];
+    tags.push('<div class="flat-btn" pair="'+pair+'">'+pair.substr(0,1)+''+pair.substr(1,1)+'</div>')
+  }
+  document.querySelector('#pip.flat-btn-box').innerHTML=tags.join('');
+  var chars = ['◯','☓','━','-','┈','░','♡','☆']
+  tags = []
+  for (var i in chars){    
+    tags.push('<div class="flat-btn" char="'+chars[i]+'">'+chars[i]+'</div>')
+  }
+  document.querySelector('#fwc.flat-btn-box').innerHTML=tags.join('');
+  //assign events
+  var btns = document.querySelectorAll('.flat-btn')
+  var bz = document.getElementById('fbz')
+  var hover = function(evt){
+    var pair = evt.target.getAttribute('pair')
+    if (pair){
+      bz.innerHTML = pair.substr(0,1)+'T'+pair.substr(1,1)
+    }
+    else{
+      var char = evt.target.getAttribute('char')
+      bz.innerHTML = char;//T￫
+    }
+     bz.style.display = 'inline-block';
+     var rect = getOffset(evt.target);
+     bz.style.left = rect.left+'px';
+     bz.style.top = (rect.top+30)+'px'     
+  }
+  var onclick = function(evt){
+    var pair = evt.target.getAttribute('pair')
+    if (pair) quote(pair);
+    else{
+      replacechar(evt.target.getAttribute('char'))
+    }
+  }
+  var mout = function(evt){
+     bz.style.display = 'none';
+  }
+  for (var i in btns){
+    btns[i].onmouseover = hover
+    btns[i].onmouseout = mout;
+    btns[i].onclick = onclick;
+  }
+}
+/* general */
+function quote(pair){
+  loading(true)
+  google.script.run.withSuccessHandler(stopLoading).selectionEncloseWith(pair.substr(0,1),pair.substr(1,1));
+}
+function replacechar(char){
+  loading(true)
+  google.script.run.withSuccessHandler(stopLoading).selectionReplaceWith(char);
+}
+function insertSelectText(ele){
+  var value = ele.options[ele.selectedIndex].value
+  if (value==='') return;//do nothing
+  loading(true)
+  google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).insertAtCursor(value);
+  ele.selectedIndex = 0;
+}
+
+/* start of help system */
+function enableHelp(){
+  var helps =  document.querySelectorAll('.help');
+  var timer = 0,delay = 1000,hoverDelay=1000;
+  for (var i=0,l=helps.length;i<l;i++){
+    var hoverType = helps[i].getAttribute('helptype')=='hover';
+    helps[i].onmouseover = function(evt){
+      var target = evt.currentTarget
+      var helpname = target.getAttribute('hoverhelpname') || target.getAttribute('helpname')
+      // check if the same help is openning
+      if (document.querySelector('.helpframe[helpname="'+helpname+'"]')) {
+        return;
+      }
+      if (timer>0) clearTimeout(timer);
+      timer = setTimeout(function(){
+        timer = 0;
+        showHelp(helpname,target.getAttribute('helpCloseByBtn'),target.getAttribute('helptype'))
+      },(hoverType ? hoverDelay : delay))
+    }
+    if (hoverType){
+      helps[i].onmouseout = function(evt){
+        if (timer){
+          //give up to show it
+          clearTimeout(timer);timer = 0;
+        }
+        else{
+          closeHoverHelp();
+        }
+      }
+    }
+    else{
+      // cancel the help showup
+      helps[i].onmouseout = function(evt){
+        if (timer){
+          clearTimeout(timer);timer = 0;
+        }
+      }
+    }
+  }
+}
+
+function getOffset( el ) {
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+        _x += el.offsetLeft //- el.scrollLeft;
+        _y += el.offsetTop //- el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { top: _y, left: _x };
+}
+function showHelp(helpname,helpCloseByBtn,helpType){
+  
+  /* simply deal with hover help */
+  if (helpType=='hover'){
+      var helppos = document.querySelector('.helppos[helpname="'+helpname+'"]');
+      var tmpl = document.getElementById('helppostmpl')
+      var c = document.querySelector('#helps div[name="'+helpname+'"]');
+      // make it visible
+      var sidebarRect = document.querySelector('.sidebar').getBoundingClientRect()
+      var sidebarWidth = sidebarRect.right - sidebarRect.left;
+      tmpl.style.display='inline-block';
+      tmpl.style.position = 'absolute';
+      tmpl.style.zIndex = 99;
+      var target = document.querySelector('.help[hoverhelpname="'+helpname+'"][helptype="hover"]');
+      if (!target) target = document.querySelector('.help[helpname="'+helpname+'"][helptype="hover"]');
+      var targetRect = target.getBoundingClientRect()
+      var targetHeight = targetRect.bottom - targetRect.top;
+      var targetWidth = targetRect.right - targetRect.left;
+      var rect = getOffset(target)
+      tmpl.style.top = (rect.top + targetHeight+4)+'px'
+      tmpl.style.opacity = 0;
+      tmpl.innerHTML= c.innerHTML;
+      tmpl.style.maxWidth = Math.floor(sidebarWidth * 0.8)+'px'
+      var tmplRect = tmpl.getBoundingClientRect()
+      var tmplWidth = tmplRect.right - tmplRect.left
+      var p0 = Math.floor(sidebarWidth * 0.1);
+      var p1 = Math.floor(sidebarWidth * 0.9);
+      var tmplpt = document.getElementById('helppostmplpt')
+      tmplpt.style.top = (parseInt(tmpl.style.top)-10)+'px';
+      if (rect.left < p0){
+        tmpl.style.left = rect.left+'px'
+        tmplpt.style.left = tmpl.style.left;
+      }
+      else if (rect.left+targetWidth > p1) {
+        tmpl.style.left = Math.floor((rect.left+targetWidth - tmplWidth))+'px'
+        tmplpt.style.left = Math.floor(parseInt(tmpl.style.left)+tmplWidth-18)+'px';
+      }
+      else {
+        tmpl.style.left = Math.max(0,Math.floor(rect.left+targetWidth/2-tmplWidth/2))+'px'
+        tmplpt.style.left = Math.max(0,Math.floor(parseInt(tmpl.style.left)+tmplWidth/2-6))+'px'
+      }
+      tmpl.setAttribute('active',1);
+      setTimeout(function(){
+        //starts animation
+        tmpl.style.opacity=1;
+        tmplpt.style.display='';
+      },1)
+    return;
+  }
+  
+  /* need to check again for some help is triggered manually */
+  if (document.querySelector('.helpframe[helpname="'+helpname+'"]')) return;//already opened
+  /* one help only, unless the existing help is a modal help */
+  closeHelp()
+  // create a new helpframe  
+  /* prepare for animation */
+  // clone the masterhelpframe  
+  var helpframe = document.querySelector('.masterhelpframe.helpframe').cloneNode(true);
+  helpframe.className = 'helpframe';
+  
+  helpframe.style.display = 'block';
+  helpframe.setAttribute('helpname',helpname)
+  var trigger = function(){    
+    //var helpframe = document.querySelector('.helpframe[helpname="'+helpname+'"]');
+    helpname = this._helpname; 
+    if (helpCloseByBtn) helpframe.setAttribute('modal',1)
+    helpframe.querySelector('.closebtn').setAttribute('helpname',helpname)
+    var cele = helpframe.querySelector('.helpcontent')
+    /* find the insert position */
+    var helppos = document.querySelector('.helppos[helpname="'+helpname+'"]');
+    helppos.parentNode.insertBefore(helpframe, helppos.nextSibling);
+    /* find the help content to insert */
+    var c = document.querySelector('#helps div[name="'+helpname+'"]');
+    /* insert the help content */
+    cele.appendChild(c);//move it
+    /* starts the animation to show up*/
+    var titleheight = helpframe.querySelector('.helpframetitle').clientHeight;
+    /* make the helpframe visible, delay to wait the DOM been refreshed */
+    setTimeout(function(){
+      // scroll to make it visible
+      var y = getOffset( helpframe ).top; 
+      var offset = y-window.scrollY;
+      if (offset<0 || offset > window.innerHeight)  window.scrollTo(0,Math.max(0,y-50));      
+      
+      //trigger event
+      var e = document.createEvent('Event');
+      e.initEvent('help-open-'+helpname,false,true);
+      document.dispatchEvent(e);
+      
+    },100);
+  }
+  setTimeout(function(){trigger.apply({_helpname:helpname})},1)
+}
+function closeHoverHelp(){
+  /* find the insert position */
+  var helppos = document.querySelector('.helppos[active]');
+  if (helppos===null) return;
+  helppos.innerHTML='';
+  // make it invisible
+  helppos.style.display='none';
+  helppos.style.opacity=0;
+  helppos.removeAttribute('active');
+  var tmplpt = document.getElementById('helppostmplpt')
+  tmplpt.style.display='none';
+}
+function closeHelp(btn){
+  /* release the body click */
+  document.body.onclick = null;
+  
+  var helpname = null,helpframe=null;
+  if (btn) {
+    helpname = btn.getAttribute('helpname');
+    helpframe = document.querySelector('.helpframe[helpname="'+helpname+'"]');
+    helpframe.removeAttribute('modal')//enforce to close by btn
+    //fire event if closed by button
+    var e = document.createEvent('Event');
+    e.initEvent('help-close-'+helpname,false,true);
+    document.dispatchEvent(e);
+  }
+  else {
+    helpframe = document.querySelector('.helpframe[helpname]');
+    if (!helpframe) return true;//no helpframe is showing    
+    helpname = helpframe.getAttribute('helpname');
+  }
+  if (helpframe.getAttribute('modal')) return false
+  var cele = helpframe.querySelector('.helpcontent')
+  if (cele.firstChild != null){
+    /*cele.removeChild(cele.firstChild);*/
+    //move back to helps
+    document.getElementById('helps').appendChild(cele.firstChild);    
+  }
+  helpframe.style.display = 'none';
+  helpframe.parentNode.removeChild(helpframe);
+  return true;
+}
+/* end of help system */
+/* formats management */
+var formats;
+var menuFormats;
+var editingFormats;
+var editingFormatsType='';//'menu' or not
+var selectedFmt = -1;
+var baseTime = getNewDate();
+var baseTimeOffset = 0;
+var _updateFormatTimer = 0
+function saveFormats(){
+   if(_updateFormatTimer) clearTimeout(_updateFormatTimer);
+   _updateFormatTimer = setTimeout(function(){
+     _updateFormatTimer = 0;
+     var name = editingFormatsType=='menu' ? 'menuformats' : 'formats';
+     google.script.run.setProperty(name,editingFormats.join('\t'));
+     console.log([name,editingFormats])
+   },2000)
+}
+
+function renderDateFormatOptions(selectEle,raw){
+  var tags = []
+  var fmts = editingFormats;
+  for (var i=0,l=fmts.length;i<l;i++){
+    if (raw){
+      tags.push('<option value="'+fmts[i]+'">'+fmts[i]+'</option>');
+    }
+    else{
+      var btoffset = 0;
+      tags.push('<option value="'+fmts[i]+'" class="dynamic-value" baseTimeOffset="'+btoffset+'" name="DATETIME" format="'+fmts[i]+'"></option>');
+    }
+  }
+  if (raw){
+    // add a new item below
+    tags.push('<option>'+localI18n('New Format')+'</option>')
+  }
+  selectEle.innerHTML = tags.join('')
+  if (raw){
+    selectEle.selectedIndex = selectedFmt;
+  }
+  else {
+    selectEle.selectedIndex = 0;
+    selectedFmt = 0;
+    document.getElementById('dtfmtinput').value = formats[0];
+  }
+}
+/* changed on date-time picker */
+function dateFormatChanged(selEle){
+  var selectedIndex = selEle.selectedIndex
+  var selEleEdit = document.getElementById('insdtedit')
+  selEleEdit.selectedIndex = selectedIndex;
+  selectedFmt = selectedIndex;
+  var newFormat = formats[selectedIndex];
+  document.getElementById('dtfmtinput').value = newFormat;
+}
+
+document.getElementById('insdt1st').onclick = function(evt){
+  evt.preventDefault()
+  var selEle = document.getElementById('insdt')
+  var selEleEdit = document.getElementById('insdtedit')
+  var selectedIndex = selEle.selectedIndex
+  if (selectedIndex==0) return
+  var oldFormat = formats[0]
+  var newFormat = formats[selectedIndex];
+  
+  formats.splice(selectedIndex,1,oldFormat);
+  formats.splice(0,1,newFormat);
+  selectedFmt = 0;
+
+  switchSelectOption(selEle,0,selectedIndex)
+  switchSelectOption(selEleEdit,0,selectedIndex)
+  selEle.selectedIndex = 0
+  selEleEdit.selectedIndex = 0
+
+  saveFormats();
+  //miso
+  myAlert(localI18n('Done'),function(){})
+  
+}
+/* changed on date-time formats selector*/
+function updateDateFormatSelector(selEle){
+  if (selectedFmt == selEle.selectedIndex) return;
+  if (selEle.selectedIndex == selEle.options.length-1){
+    // click on the new item
+    var dtfmtinput = document.getElementById('dtfmtinput');
+    dtfmtinput.value = '';
+    dtfmtinput.setAttribute('placeholder',localI18n('Input new format here'))
+    dtfmtinput.focus();
+    var fmt = '';
+    formats.push(fmt)
+    selectedFmt = formats.length - 1
+    var insdt = document.getElementById('insdt')
+    // add to date time <select>
+    var opt2 = insdt.options[0].cloneNode(true);
+    opt2.setAttribute('format',fmt);
+    opt2.setAttribute('value',fmt);
+    opt2.setAttribute('name','DATETIME');
+    opt2.className = 'dynamic-value';
+    opt2.text = localI18n('New Format');
+    insdt.appendChild(opt2);
+    insdt.selectedIndex = insdt.options.length - 1;
+    // does not allow to move it
+    document.getElementById('optdel').setAttribute('disabled',true);
+    document.getElementById('optup').setAttribute('disabled',true);
+    document.getElementById('optdown').setAttribute('disabled',true);
+  }
+  else{
+    // click on existing items
+    var insdt = document.getElementById('insdt')
+    var fmt =editingFormats[selEle.selectedIndex];
+    insdt.selectedIndex = selEle.selectedIndex;  
+    selectedFmt = selEle.selectedIndex;
+
+    var dtfmtinput = document.getElementById('dtfmtinput');
+    dtfmtinput.value = fmt;
+    dtfmtinput.setAttribute('placeholder',localI18n('Input format here'))
+    dtfmtinput.focus();
+  
+    if (formats.length>1){
+      //allow to remove or move item
+      document.getElementById('optdel').removeAttribute('disabled');
+      document.getElementById('optup').removeAttribute('disabled');
+      document.getElementById('optdown').removeAttribute('disabled');
+    }
+    else{
+      document.getElementById('optdel').setAttribute('disabled',true);
+      document.getElementById('optup').setAttribute('disabled',true);
+      document.getElementById('optdown').setAttribute('disabled',true);
+    }
+  }
+}
+function evlFormat(fmt){
+    var fmtm = fmt.replace(/%%/g,' ');//for matching
+    var pat = /\%[^aAbBdDehHjiLMmNnpSuUwWyYZ\*\+%]/;
+    var m = fmtm.match(pat)
+    var ret,ok=true;
+    if (fmt==''){
+      ret = ''
+    }
+    else if (fmt=='%'||fmtm.match(/%$/)){
+      //inputing
+      ok = false
+      ret = strftime(fmt.substr(0,fmt.length-1),baseTime,serverValues['locale'])+'%'
+    }
+    else if (m){
+      //illiggle
+      ok = false
+      ret = localI18n('Unknow')+': '+m[0]
+    } else{
+      ret = strftime(fmt,baseTime,serverValues['locale'])
+    }
+    return [ok , ret];
+}
+
+function copyOption(src,dst){
+  dst.text = src.text
+  var names = ['value','format']
+  for (var i=0;i<names.length;i++){
+    if (src.getAttribute(names[i]) != null) dst.setAttribute(names[i],src.getAttribute(names[i]));
+  }
+}
+function switchSelectOption(selEle,i,j){
+  var ori = selEle.options[i].cloneNode(true)
+  copyOption( selEle.options[j],  selEle.options[i]);
+  copyOption( ori, selEle.options[j]);
+}
+function handleDFOption(action){
+  var selEle = document.getElementById('insdtedit');  
+  var insdt = document.getElementById('insdt');
+  switch(action){
+    case -1:
+    case 1: //move up or down
+      if (selEle.selectedIndex != -1){
+        var idx2ins = selectedFmt + (action < 0 ? -1 : 1);
+        if (idx2ins>=0 && idx2ins<formats.length){
+          var ori = formats[selEle.selectedIndex];
+          formats.splice(selectedFmt,1);
+          formats.splice(idx2ins,0,ori);
+
+          switchSelectOption(selEle,selectedFmt,idx2ins)
+          switchSelectOption(document.getElementById('insdt'),selectedFmt,idx2ins)
+          selEle.selectedIndex = idx2ins
+          insdt.selectedIndex = idx2ins;
+          selectedFmt = idx2ins;
+          saveFormats();
+        }
+      }
+      break;
+    case 0: 
+      // delete optoin; keep 1 option at least
+      if (formats.length > 1){
+        confirm(localI18n('Delete this item')+'?',function(yes){
+          if (yes){
+              setTimeout(function(){closeHoverHelp()},1000)
+              selEle.selectedIndex = 0;
+              insdt.selectedIndex = 0;
+              //document.getElementById('optupdate').setAttribute('disabled',true);
+              formats.splice(selectedFmt,1);
+              selEle.removeChild(selEle.options[selectedFmt])
+              var sel = document.getElementById('insdt')
+              sel.removeChild(sel.options[selectedFmt])      
+              selectedFmt = 0
+              
+              document.getElementById('dtfmtinput').value = formats[0];
+              saveFormats();            
+          }
+        })
+      }
+      break
+    case 4://update
+      var fmt = document.getElementById('dtfmtinput').value;
+      var fmts = editingFormats;
+      if (fmts[selectedFmt] != fmt){
+        // update format select
+        var opt = selEle.options[selectedFmt];
+        opt.text = fmt;
+        opt.setAttribute('value',fmt);
+        //update to date time selector
+        var sel = document.getElementById('insdt');
+        var opt2 = sel.options[selectedFmt];
+        // update the preview
+        var ret = evlFormat(fmt)
+        var fmtOk = ret[0], evl = ret[1];
+        opt2.innerText = evl;
+        //selEle.focus();
+        if (fmtOk){
+          fmts[selectedFmt] = fmt;
+          opt2.setAttribute('format',fmt);
+          opt2.setAttribute('value',fmt);
+          opt2.removeAttribute('lock');//unlock
+          saveFormats();
+        }
+        else{
+          opt2.setAttribute('lock',1);//lock for dynamicValue
+        }
+      }   
+  }
+}
+function resetUserProperty(){
+  loading(true)
+  var onSuccess = function(){
+    loading(false);
+  }
+  google.script.run.withSuccessHandler(onSuccess).sanitizeProperties()
+}
+function updateBasetimeType(sel){
+  var v = parseInt(sel.options[sel.selectedIndex].value);
+  baseTimeOffset = v;
+}
+
+/* once been called, will continuely running per second */
+var _updateBaseTimer = 0
+function updateBaseTime(stop){
+  if (stop){
+    clearTimeout(_updateBaseTimer);
+    _updateBaseTimer = 0;
+    return;
+  }
+  var d = getNewDate();  
+  if (editingFormatsType=='menu'){
+    var sel = document.getElementById('insdtedit');
+    if (sel.selectedIndex != -1 ) baseTimeOffset = Math.floor(sel.selectedIndex/2) - 1 ;//-1,0,1
+  }
+  if (baseTimeOffset!=0){
+    d.setDate(d.getDate()+baseTimeOffset)
+  }
+  baseTime = d;
+  dynamicValue();
+  _updateBaseTimer = setTimeout(function(){
+    updateBaseTime()
+  },1000)  
+}
+/* end of date format management */
+/* text options */
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+}
+var _textOptions;
+function renderTextOptions(textOptions,idx){
+  var tags;
+  if (textOptions){
+    //1st time been called
+    _textOptions = textOptions;
+    
+    // if no groups, disable this feature
+    if (textOptions.length==0){
+      document.getElementById('textoptions-allgroup').style.display = 'none'
+      document.getElementById('textoptions-group').style.display = 'none'
+      document.getElementById('textoptions-buttons').style.display = 'none'
+      return;
+    }
+    
+    idx = 0;
+    tags = ['<select>']
+    for (var i in textOptions){
+      var optgroup = textOptions[i] 
+      //skip this group if there is no items
+      if (optgroup.options.length==0) continue;
+      tags.push('<option value="'+i+'"'+(i==0 ? ' selected' : '')+'>'+escapeHtml(optgroup.title)+'</option>')
+    }
+    tags.push('</select>')
+    document.querySelector('#textoptions-allgroup select').innerHTML = tags.join('')
+  }
+  else{
+    textOptions = _textOptions;
+  }
+  var optgroup = textOptions[idx]
+  tags = ['<select>']
+  var options = optgroup.options;
+  for (var j in options){
+    var v = options[j][1];
+    if (v=='') v = options[j][0]
+    tags.push('<option value="'+ encodeURIComponent(v) +'"'+(i==0 ? ' selected' : '')+'>'+escapeHtml(options[j][0])+'</option>')
+  }
+  tags.push('</select>')
+  document.querySelector('#textoptions-group select').innerHTML = tags.join('')
+}
+function insertTextOption(){
+  var el = document.querySelector('#textoptions-group select')
+  var text = decodeURIComponent(el.options[el.selectedIndex].value)
+  loading(true)
+  google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).insertAtCursor(text);  
+}
+function openTextOptionsFile(){
+  open(serverValues.textOptions.url)
+}
+var _textOptionsUseCacheTimer;
+function textOptionsUseCache(){
+  if (_textOptionsUseCacheTimer) clearTimeout(_textOptionsUseCacheTimer)
+  _textOptionsUseCacheTimer = setTimeout(function(){_textOptionsUseCache()},500)
+}
+function _textOptionsUseCache(){
+  _textOptionsUseCacheTimer = 0
+  var checked = document.getElementById('cachetextopitions').checked
+  var name = 'txtOpsUsCa'
+  var value = checked ? '1' : '0'
+  loading(true)
+  if (checked){
+    google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).setProperty(name,'1');
+  }
+  else{
+    google.script.run.deleteProperty('txtOpsGrps')
+    google.script.run.withSuccessHandler(function(){
+      stopLoading()
+      myAlert(localI18n('Reopen the sidebar would update the options'),function(){})
+    }).withFailureHandler(stopLoading).setProperty(name,'0');
+  }
+}
+/* end of text options */
+/* i18n */
+var localCache = {};
+function localI18n(s){
+  if (serverValues.locale=='en') return s;
+  return localCache[s] || s;
+}
+function translate(eles,dics){
+    for (var i=0,l=eles.length;i<l;i++){
+      if (eles[i].className=='localI18n'){
+        localCache[eles[i].innerText]=dics[i];
+      }
+      else{
+        eles[i].innerHTML = dics[i];
+      }
+    }
+}
+function geti18nDictionay(){
+  // no loading, no blocking
+  //loading('Initializing...')
+  var eles = document.querySelectorAll('.i18n, .localI18n');
+  var texts = [];
+  for (var i=0,l=eles.length;i<l;i++){
+      //trim off leading and tailing space
+      texts.push(eles[i].innerHTML.replace(/^\s{2,}|\s{2,}$/m,' '));
+  }
+  var onSuccess = function(dics){
+      //loading(false);
+      translate(eles,dics);
+      /* render options of formats */
+      renderDateFormatOptions(document.getElementById('insdt')) 
+      renderDateFormatOptions(document.getElementById('insdtedit'),true)      
+      dynamicValue();
+  }
+  var onError = function (e){
+      console.log(e)
+      dynamicValue();
+  }
+  google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onError).translate(texts,'en');
+}
+
+/* initialization related routines */
+/* Assign dynamic values into DOM */
+function dynamicValue(){
+  //collect fields
+  var eles = document.querySelectorAll('.dynamic-value')
+  var eles_hover = document.querySelectorAll('select:hover .dynamic-value')
+  
+  var values = []
+  for (var i=0,l=eles.length;i<l;i++){
+    if (eles[i].getAttribute('lock')) continue;//skip the editing one
+    values.push([eles[i],eles[i].getAttribute('name'),eles[i].getAttribute('format')])
+  }
+  //calculate values
+  var now = baseTime;
+  for (var i=0,l=values.length;i<l;i++){
+    var ele=values[i][0], name = values[i][1], data = values[i][2];
+
+    //if (ele.parentNode.querySelector(':hover')===ele) continue
+    //if (ele.tagName=='OPTION' && ele.innerText != '') continue
+    var ishover = false;
+    for (var j=0,eh;eh=eles_hover[j];j++){
+      if (ele===eh) {ishover=true;break}
+    }
+    if (ishover) continue
+    
+    switch(name){
+      case 'DATETIME':
+        var format = data;
+        var t = ele.innerText
+        ele.innerText = strftime(format,now,serverValues.locale);
+        break
+    }
+  }
+}
+function changeTZ(){
+  var finish = function(){
+    google.script.host.close()
+  }
+  google.script.run.withSuccessHandler(finish).withFailureHandler(finish).setupTZ();
+}
+function getServerValues(){
+  loading('Loading...')
+  var onSuccess = function(rets){
+      loading(false);  
+      if (rets.err){
+        myAlert(rets.err,function(){});
+        return;
+      }
+      serverValues = rets;
+      
+      /* translate into mutable arrays */
+      formats = []
+      for (var i=0,l=rets.properties.formats.length;i<l;i++){
+        formats.push(rets.properties.formats[i])
+      };
+      //hide punctuation convertion
+      if (!(/ja|ko|zh|vi/i.test(rets.locale))){
+        document.getElementById('cofhp').style.display = 'none';
+      }
+      editingFormats = formats;
+      /* assigns to locale for calculate strftime */
+      if (rets['locale']=='en'){
+        /* render options of formats */
+        renderDateFormatOptions(document.getElementById('insdt')) 
+        renderDateFormatOptions(document.getElementById('insdtedit'),true)      
+        dynamicValue();
+      }
+      else{       
+        locale[rets.locale] = rets.localedata;
+        geti18nDictionay()
+      } 
+      
+      var tzoffset = (rets.tzoffset===null) ? ( new Date().getTimezoneOffset() ) : parseFloat(rets.tzoffset)
+      //convert this value to effective value
+      serverValues.tzoffset = tzoffset
+      
+      var tzinfo = 'GMT' + (tzoffset <= 0 ? '＋' : '─') + (Math.abs(tzoffset)/60)
+      document.getElementById('tzinfo').innerHTML = tzinfo
+      
+      
+      /*
+       * temporaryly disabled for not been tested feature 
+      
+      if (rets.textOptions){
+        if (rets.textOptions.options){
+          renderTextOptions(rets.textOptions.options)
+        }
+        if (rets.textOptions.msg){
+          var textsoptiongroup = document.querySelector('#textoptions-allgroup label')
+          var msg = document.createElement('div')
+          msg.style.color = 'red'
+          msg.style.paddingBottom = '10px'
+          msg.innerHTML = rets.textOptions.msg
+          textsoptiongroup.parentNode.insertBefore(msg,textsoptiongroup)
+        }
+        document.getElementById('cachetextopitions').checked = rets.textOptions.useCache
+      }
+      else{
+        renderTextOptions([]) // hide this block
+      }
+      */
+
+  }
+  /* 
+  2017-12-28, disabled to honor server-side's setting
+    var tzoffset = new Date().getTimezoneOffset()
+  */
+  google.script.run.withSuccessHandler(onSuccess).withFailureHandler(stopLoading).getServerValues();  
+}
+function getNewDate(y,m,d){
+  /* optional arguments
+   * @param: y ; int for year or instance of new Date()
+   * @param: m ; int
+   * @param: d ; int
+   */
+  var tzoffset = serverValues['tzoffset'];
+  var d = typeof(y)=='object' ? new Date(y) : (m ? new Date(y,m,d) : new Date())
+  var offset = tzoffset - d.getTimezoneOffset();
+  if (offset) d.setMinutes(d.getMinutes()-offset)
+  return d;
+}
+function initialization(){
+    getServerValues();//also calls dynamicValue() 
+    enableHelp();
+    enableFlatBtn();
+    //triggers for auto update preview
+    
+    var dtfmtinput = document.getElementById('dtfmtinput');
+    dtfmtinput.onblur=function(){
+      //check if we need to cancel the "add new format"
+      var insdtedit = document.getElementById('insdtedit');
+      if ((insdtedit.options.length == formats.length) || (formats[formats.length-1]=='')){
+        // new format item been clicked, or user clean up the last format
+        if (formats[formats.length-1]==''){
+          // user input nothing, got to clean up
+          formats.pop()
+          // reset to 1st item
+          insdtedit.selectedIndex = 0;
+          selectedFmt = 0;
+          dtfmtinput.value = formats[0]
+          var insdt = document.getElementById('insdt');
+          insdt.selectedIndex = 0
+          insdt.removeChild(insdt.options[insdt.options.length-1]);
+          // reset the last edit item
+          var lastOpt = insdtedit.options[insdtedit.options.length-1]
+          lastOpt.value = ''
+          lastOpt.text = localI18n('New Format')
+          // allow to del, move up and down
+          if (formats.length > 1){
+            document.getElementById('optdel').removeAttribute('disabled');
+            document.getElementById('optup').removeAttribute('disabled');
+            document.getElementById('optdown').removeAttribute('disabled');
+          }
+        }
+        else{
+          // add a new item to <select>
+          var opt = new Option(localI18n('New Format'))
+          insdtedit.appendChild(opt);
+          // allow to del, move up and down
+          document.getElementById('optdel').removeAttribute('disabled');
+          document.getElementById('optup').removeAttribute('disabled');
+          document.getElementById('optdown').removeAttribute('disabled');
+        }
+      }
+      else{
+        // new format item not been clicked, do nothing        
+      }
+    }
+    dtfmtinput.onkeyup=function(){      
+      handleDFOption(4)
+    }
+    
+    // auto update the baseTime (it calls dynamicValue() too)
+    updateBaseTime();
+    
+    // auto toggle to normal menu
+    document.addEventListener('help-open-eo',function(e){
+      //document.getElementById('seld').style.display='none';          
+      document.getElementById('insbtn').setAttribute('disabled',true);
+      //hide edit formats button
+      var btn = document.getElementById('insdteditbtn')
+      btn.style.display = 'none'
+      btn.blur()
+      //show close editing button
+      var btn = document.getElementById('insdteditbtncls')
+      btn.style.display = ''
+      btn.blur()      
+    })    
+    document.addEventListener('help-close-eo',function(e){
+      //toggleHelp(document.getElementById('sytbtn'),true,true)//enforce it to be closed
+      document.getElementById('insbtn').removeAttribute('disabled');
+      //document.getElementById('dtfmtinput').value='' 
+      if (editingFormatsType=='menu') toggleEditingFormats()
+      var btn = document.getElementById('insdteditbtn')
+      btn.style.display = ''
+      var btn = document.getElementById('insdteditbtncls')
+      btn.style.display = 'none'
+      // reset the last editing format, in case it is malformat
+      var insdt = document.getElementById('insdt')
+      var insdtedit = document.getElementById('insdtedit')
+      if (selectedFmt >=0) {
+        insdt.options[selectedFmt].removeAttribute('lock')
+        insdtedit.options[selectedFmt].innerText = formats[selectedFmt]
+        document.getElementById('dtfmtinput').value = formats[selectedFmt]
+      }
+      //if (insdt.selectedIndex==-1) insdt.selectedIndex = 0
+      //rerender the selected item
+    })
+    document.addEventListener('help-open-ftsy',function(e){
+      document.getElementById('sytbtn').innerText = localI18n('Hide Syntax')
+    })
+    document.addEventListener('help-close-ftsy',function(e){
+      document.getElementById('sytbtn').innerText = localI18n('Show Syntax')
+    })
+    
+    /*
+    //test key press
+    document.body.onkeydown = function(evt){
+      //ctrl-V or command-V
+      //if ((evt.ctrlKey || evt.metaKey) && evt.keyCode==86){
+      //Alt-D
+      if ((evt.altKey) && evt.keyCode==68){
+        insertDateTimeSelect()
+      }
+    }
+    */
+}
+
+function getUrlContent(url,callback,options) {
+    /*
+     * (required) callback (content,state_code)
+     * (optional) options = {
+        method:'POST' or 'GET' (default GET),
+        postdata:string or dictionary
+     }
+     */
+    if (typeof(options)=='undefined') options = {}
+    var xmlhttp;
+
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+           if (xmlhttp.status == 200){
+               callback(xmlhttp.responseText,200)
+           }
+           else{
+              callback(null,xmlhttp.status)
+           }
+        }
+    }
+    var method = (options && options.method) ? options.method.toUpperCase() : 'GET'
+    xmlhttp.open(method, url, true);
+    if (method=='POST') xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    if (options.postdata) {
+        if (typeof(options.postdata)=='object'){
+            var p = []
+            for (var key in options.postdata){
+                p.push(key+'='+encodeURIComponent(options.postdata[key]))
+            }
+            xmlhttp.send(p.join('&'));
+        }
+        else{
+            // string type
+            xmlhttp.send(options.postdata);
+        }
+    }
+    else xmlhttp.send()
+}
+
+var hebrew_date_cache={};
+function getHebrew(d,key,callback){
+  //https://www.hebcal.com/home/219/hebrew-date-converter-rest-api
+  var url = 'https://www.hebcal.com/converter/?cfg=json&gy='+d.getFullYear()+'&gm='+(1+d.getMonth())+'&gd='+d.getDate()+'&g2h=1'
+  getUrlContent(url,function(content){
+    try{  
+      var obj = JSON.parse(content)
+      hebrew_date_cache[key] = obj
+    }
+    catch(e){
+      callback(null)
+    }
+  })
+}
+
+function LunarCalendar(){
+    this.lunarInfo=new Array(  
+        0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,  
+        0x04ae0,0x0a5b6,0x0a4d0,0x0d250,0x1d255,0x0b540,0x0d6a0,0x0ada2,0x095b0,0x14977,  
+        0x04970,0x0a4b0,0x0b4b5,0x06a50,0x06d40,0x1ab54,0x02b60,0x09570,0x052f2,0x04970,  
+        0x06566,0x0d4a0,0x0ea50,0x06e95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,  
+        0x0d4a0,0x1d8a6,0x0b550,0x056a0,0x1a5b4,0x025d0,0x092d0,0x0d2b2,0x0a950,0x0b557,  
+        0x06ca0,0x0b550,0x15355,0x04da0,0x0a5b0,0x14573,0x052b0,0x0a9a8,0x0e950,0x06aa0,  
+        0x0aea6,0x0ab50,0x04b60,0x0aae4,0x0a570,0x05260,0x0f263,0x0d950,0x05b57,0x056a0,  
+        0x096d0,0x04dd5,0x04ad0,0x0a4d0,0x0d4d4,0x0d250,0x0d558,0x0b540,0x0b6a0,0x195a6,  
+        0x095b0,0x049b0,0x0a974,0x0a4b0,0x0b27a,0x06a50,0x06d40,0x0af46,0x0ab60,0x09570,  
+        0x04af5,0x04970,0x064b0,0x074a3,0x0ea50,0x06b58,0x055c0,0x0ab60,0x096d5,0x092e0,  
+        0x0c960,0x0d954,0x0d4a0,0x0da50,0x07552,0x056a0,0x0abb7,0x025d0,0x092d0,0x0cab5,  
+        0x0a950,0x0b4a0,0x0baa4,0x0ad50,0x055d9,0x04ba0,0x0a5b0,0x15176,0x052b0,0x0a930,  
+        0x07954,0x06aa0,0x0ad50,0x05b52,0x04b60,0x0a6e6,0x0a4e0,0x0d260,0x0ea65,0x0d530,  
+        0x05aa0,0x076a3,0x096d0,0x04bd7,0x04ad0,0x0a4d0,0x1d0b6,0x0d250,0x0d520,0x0dd45,  
+        0x0b5a0,0x056d0,0x055b2,0x049b0,0x0a577,0x0a4b0,0x0aa50,0x1b255,0x06d20,0x0ada0,  
+        0x14b63); 
+        
+    this.Gan=new Array("甲","乙","丙","丁","戊","己","庚","辛","壬","癸");  
+    this.Zhi=new Array("子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥");  
+    this.nStr1 = new Array('','一','二','三','四','五','六','七','八','九','十');  
+    this.nStr2 = new Array('初','十','廿','卅','□');
+}
+LunarCalendar.prototype = {
+    lYearDays : function(y) {  
+        var i, sum = 348;  
+        for(i=0x8000; i>0x8; i>>=1) sum += (this.lunarInfo[y-1900] & i)? 1: 0;  
+        return(sum+this.leapDays(y));  
+    },
+    leapDays : function(y) {  
+        if(this.leapMonth(y))  return((this.lunarInfo[y-1900] & 0x10000)? 30: 29);  
+        else return(0);  
+    },
+    leapMonth : function(y) {  
+        return(this.lunarInfo[y-1900] & 0xf);  
+    },
+    monthDays : function (y,m) {  
+        return( (this.lunarInfo[y-1900] & (0x10000>>m))? 30: 29 );  
+    },
+    md2Str:function(n,month){
+      var n1 = Math.floor(n/10)
+      var n0 = n - (n1*10)
+      if (month) return (n1==0 ? '' : this.nStr2[n1])+(n0==0 ? '' : this.nStr1[n0])
+      else return (this.nStr2[n1])+(n0==0 ? '' : this.nStr1[n0])
+    },
+    toLunar: function (objDate) {  
+
+        var lunarDate = {}
+      
+        var i, leap=0, temp=0;  
+        var offset   = (Date.UTC(objDate.getFullYear(),objDate.getMonth(),objDate.getDate()) - Date.UTC(1900,0,31))/86400000;  
+  
+        for(i=1900; i<2050 && offset>0; i++) { temp=this.lYearDays(i); offset-=temp; }  
+  
+        if(offset<0) { offset+=temp; i--; }  
+  
+        lunarDate.year = i;  
+  
+        leap = this.leapMonth(i); //闰哪个月  
+        lunarDate.isLeap = false;  
+  
+        for(i=1; i<13 && offset>0; i++) {  
+            //闰月  
+            if(leap>0 && i==(leap+1) && lunarDate.isLeap==false)  
+                { --i; lunarDate.isLeap = true; temp = this.leapDays(lunarDate.year); }  
+            else  
+                { temp = this.monthDays(lunarDate.year, i); }  
+  
+            //解除闰月  
+            if(lunarDate.isLeap==true && i==(leap+1)) lunarDate.isLeap = false;  
+  
+            offset -= temp;  
+        }  
+  
+        if(offset==0 && leap>0 && i==leap+1)  
+        if(lunarDate.isLeap)  
+            { tlunarDatehis.isLeap = false; }  
+        else  
+            { lunarDate.isLeap = true; --i; }  
+  
+        if(offset<0){ offset += temp; --i; }  
+  
+        lunarDate.year = this.cyclical(lunarDate.year)
+        lunarDate.month = this.md2Str(i,true)
+        lunarDate.day = this.md2Str(offset + 1);
+        return lunarDate
+    },
+    cyclical:function(year) {  
+        var num = year - 1900 + 36
+        return(this.Gan[num%10]+this.Zhi[num%12]);  
+    }
+}
+
+var lunar_date_cache = {}
+var lunar_calendar;
+function getLunar(d,key){
+  if (!lunar_calendar) lunar_calendar = new LunarCalendar()
+  var lu = lunar_calendar.toLunar(d)
+  lunar_date_cache[key] = lu
+  return lu
+}
+
+/* source of strftime */
+var locale={'en':{
+  days:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+  daysshort:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+  months:["January","February","March","April","May","June","July","August","September","October","November","December"],
+  monthsshort:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+  }
+}
+/*
+function shortname(name) {
+    return name.substr(0, 3);
+}
+*/
+function thousandCommas(n,sp) {
+  if (!sp) sp = ','
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, sp);
+}
+function zeropad(n, size) {
+    n = '' + n; /* Make sure it's a string */
+    size = size || 2;
+    while (n.length < size) {
+        n = '0' + n;
+    }
+    return n;
+}
+function getWeek(d){
+    var onejan = getNewDate(d.getFullYear(), 0, 1);
+    return Math.ceil(((d - onejan)/86400000 - (6-onejan.getDay())%6)/7);
+}
+function getWeekMonday(d){
+    var onejan = getNewDate(d.getFullYear(), 0, 1);
+    return 1+Math.floor(((d - onejan)/86400000 - ((onejan.getDay()+6)%7 + 1))/7);
+}
+function getDayOfYear(d){
+    var j1= getNewDate(d);
+    j1.setMonth(0, 0);
+    return Math.round((d-j1)/8.64e7);
+}
+function twelve(n) {
+    return (n <= 12) ? (n==0 ? 12 : n) : n - 12;
+}
+function tzOffset(offset){
+  var s = ((offset<0? '+':'-')+ // Note the reversed sign!
+          zeropad(parseInt(Math.abs(offset/60)), 2)+
+          zeropad(Math.abs(offset%60), 2))
+  return s
+}
+
+function strftime(format, date,loc) {
+    date = date || getNewDate();
+    var locfmtpat = /\%[abAB]/; 
+    if (locfmtpat.test(format) && !locale[loc]){
+      initializeUserLocale();
+    }
+    var l = locale[loc] || locale['en'];
+    var months = l.months, days = l.days;
+
+    var fields = {
+        a: l.daysshort[date.getDay()],
+        A: days[date.getDay()],
+        b: l.monthsshort[date.getMonth()],
+        B: months[date.getMonth()],
+//        c: date.toLocaleString(),
+        d: zeropad(date.getDate()),
+        H: zeropad(date.getHours()),
+        h: zeropad(twelve(date.getHours())),
+        i: zeropad(date.getMilliseconds(),3),
+        j: getDayOfYear(date),
+        m: zeropad(date.getMonth() + 1),
+        M: zeropad(date.getMinutes()),
+        n: date.getMonth() + 1,
+        N: date.getDate(),
+        p: (date.getHours() >= 12) ? 'PM' : 'AM',
+        S: zeropad(date.getSeconds()),
+        w: zeropad(date.getDay() + 1),
+        W: getWeekMonday(date)+1,
+        U: getWeek(date)+1,
+//        x: date.toLocaleDateString(),
+//        X: date.toLocaleTimeString(),
+        y: ('' + date.getFullYear()).substr(2, 4),
+        Y: '' + date.getFullYear(),
+//        Z: tzOffset(date.getTimezoneOffset()), 
+        Z: tzOffset(serverValues['tzoffset']),
+        '%' : '%',
+    };
+    var result = '', i = 0, len=format.length;    
+    var hd = {hy:0,hm:'?',hd:'?',events:[],hebrew:'-'}
+    var lu = {year:0,month:'',day:''}
+    while (i < format.length) {
+        if (format[i] === '%' && (i+3<len) && (format[i+1]=='H') && (format[i+2]=='e')) {
+            if (hd.hy==0) {
+              var key = date.getFullYear()+':'+date.getMonth()+':'+date.getDate()
+              if (hebrew_date_cache[key]) hd = hebrew_date_cache[key]
+              else {
+                hd.hy = '2016'
+                getHebrew(date,key,function(result){
+                   hd = result
+                })
+              }
+            }
+            // %HeY, %HeM, %HeD
+            switch (format[i + 3]){
+              case 'Y':
+                  result = result + hd.hy
+                  break
+              case 'M':
+                  result = result + hd.hm
+                  break
+              case 'D':
+                  result = result + hd.hd
+                  break
+              case 'H':
+                  result = result + hd.hebrew
+                  break
+              case 'E':
+                  result = result +  (hd.events ? hd.events.join(', ') : '')
+                  break
+              default:
+                  result = result + format[i]+format[i + 1]+format[i + 2]+format[i + 3]
+            }            
+            i += 3;
+        }
+        else if (format[i] === '%' && (i+3<len) && (format[i+1]=='L') && (format[i+2]=='u')) {
+            if (lu.year==0) {
+              var key = date.getFullYear()+':'+date.getMonth()+':'+date.getDate()
+              if (lunar_date_cache[key]) {
+                lu = lunar_date_cache[key]
+              }
+              else {
+                lu = getLunar(date,key)
+              }
+            }
+            // %LuY, %LuM, %LuD
+            switch (format[i + 3]){
+              case 'Y':
+                  result = result + lu.year
+                  break
+              case 'M':
+                  result = result + lu.month
+                  break
+              case 'D':
+                  result = result + lu.day
+                  break
+              default:
+                  result = result + format[i]+format[i + 1]+format[i + 2]+format[i + 3]
+            }            
+            i += 3;
+        }
+        else if (format[i] === '%' && (i+3<len) && (format[i+1]=='e') && (format[i+2]=='n') && (format[i+3]=='b'||format[i+3]=='B')) {        
+          // %enB, %enB
+            result = result + (format[i+3]=='b' ? locale.en.monthsshort[date.getMonth()] : locale.en.months[date.getMonth()])
+            i += 3;          
+        }        
+        else if ((format[i] == '%') && (i+2<len) && (format[i+1]=='*')) {
+            // %*d, %*H, %*S, 
+            result = result + parseInt(fields[format[i + 2]]);
+            i += 2;
+        }
+        else if ((format[i] == '%') && (i+2<len) && (format[i+1]=='+')) {
+            // %+d
+            var n = parseInt(fields[format[i + 2]])
+            if (n>=11 && n<=13){
+              n = n+'th'
+            }
+            else if (n%10==1) n = n+'st'
+            else if (n%10==2) n = n+'nd'
+            else if (n%10==3) n = n+'rd'
+            else n = n+'th'
+            result = result + n;
+            i += 2;
+        }
+        else if (format[i] === '%' && (i+1<len)) {
+            result = result + fields[format[i + 1]];
+            ++i;
+        }
+        else {
+            result = result + format[i];
+        }
+        ++i;
+    }
+    return result;
+}
+</script>
