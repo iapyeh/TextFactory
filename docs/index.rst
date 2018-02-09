@@ -252,10 +252,7 @@ feature: add format for the Hebrew and lunar calendar.
 
 
 
-.. _h4d2e3c318db693d4de4e5f3d5671:
-
 2016-03-05
-----------
 
 You can now add a “\*” in the format to remove the leading zero. For example, if “%d” yields “02”, then the “%\*d” would be “2”. This is also valid for %h, %j, %m,...ect.
 
