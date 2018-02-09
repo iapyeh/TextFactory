@@ -223,16 +223,45 @@ Step-by-Step: How to know what’s wrong by the Chrome Console.
 Release Notes
 =============
 
-October 7th, 2017
+2018-02-09
 
-Add new formats: %+d, %enB and %enb. For inserting date string like "7th October 2017".
+Open all the source codes to be accessible on the Github repository. (\ |LINK5|\ )
 
-.. _h5154127227d182278c623166545415:
+2018-01-02
 
-Mar 5th, 2016
--------------
+feature: enable user to set time zone manually
+
+2017-11-08
+
+fixes:  Typo, Calendar in daylight saving area, workaround for script's issue #36759856
+
+2017-10-7
+
+format: %+d, %enB and %enb.  For "%+d %enB, %Y" would insert  "1st October 2017".
+
+2017-4-18:
+
+feature: insert date from calendar
+
+2016-10-09:
+
+feature: add format for the Hebrew and lunar calendar.
+
+.. _h2c1d74277104e41780968148427e:
+
+
+
+
+.. _h4d2e3c318db693d4de4e5f3d5671:
+
+2016-03-05
+----------
 
 You can now add a “\*” in the format to remove the leading zero. For example, if “%d” yields “02”, then the “%\*d” would be “2”. This is also valid for %h, %j, %m,...ect.
+
+2016-2-27: 
+
+feature: the leading zero will be removed by prefixing \* to the existing format.
 
 
 .. bottom of content
@@ -412,6 +441,10 @@ You can now add a “\*” in the format to remove the leading zero. For example
 .. |LINK4| raw:: html
 
     <a href="mailto:iapyeh@gmail.com">iapyeh＠gmail.com</a>
+
+.. |LINK5| raw:: html
+
+    <a href="https://github.com/iapyeh/TextFactory/tree/master/source" target="_blank">repository name: TextFactory</a>
 
 
 .. |IMG1| image:: static/index_1.png
