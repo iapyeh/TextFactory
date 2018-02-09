@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+    <style>    
+    #calendar td.light a.cell{
+      color:#e4e4e4;
+    }
+    #calendar td {
+      text-align:center;
+      padding: 8px 0px;
+    }
+    #calendar td a.cell {
+      text-decoration:none;
+    }
+    #calendar th {
+      text-align:center;
+    }
+    #calendar td.today {
+      background-color:#efefef;
+    }
+    .calendar-title{
+      text-align:center;
+      border:none;
+    }
+    #calendar-year{
+      width:40px;
+    }
+    #calendar-month{
+      width:20px;    
+    }
+    </style>
+    <script language="javascript">
+    var firstday
+    var now = new Date()
+    //var now = new Date(2017,10,7)
+    function renderCalendar(today){
+
+      var thisDate = -1
+      
+      if ((!today) || (today.getFullYear()==now.getFullYear() && today.getMonth()==now.getMonth())) {
+        // this month
+        today = now
+        thisDate = today.getDate()
+        document.getElementById('go-today').style.opacity = '0'
+      }
+      else{
+        document.getElementById('go-today').style.opacity = '100'
+      }
+      
+      var rows = []
+      
+      var weekdays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+      var cols = []
+      for (var i=0;i<7;i++){
+        cols.push('<th>'+weekdays[i]+'</th>')
+      }
+      rows.push('<tr>'+cols.join('')+'</tr>')
+      
+      firstday = new Date(today.getFullYear(),today.getMonth(),1)
+      var day = firstday.getDay()
+      var d00 = new Date(firstday.getTime())
+      d00.setDate(d00.getDate()-day)
+
+      document.querySelector('#calendar-year').value = firstday.getFullYear()
+      document.querySelector('#calendar-month').value = firstday.getMonth()+1
+      
+      // first row of date
+      cols = []
+      for (var i=0;i<day;i++){
+        cols.push('<td class="light"><a href="#" class="cell prevMonth">'+(d00.getDate()+i)+'</a></td>')
+      }
+      var d;
+      for (var i=day;i<7;i++){
+        d = (i-day+1)
+        var cls = d==thisDate ? ' class="today"' : ''
+        cols.push('<td'+cls+'><a href="#" class="cell">'+d+'</a></td>')
+      }
+      rows.push('<tr>'+cols.join('')+'</tr>')
+
+      cols = ['<tr>']
+      d = 7 - day
+      var theday = new Date(firstday.getTime())
+      theday.setDate(theday.getDate()+(7-day))
+      
+      while (d <= 31){
+        d = theday.getDate()
+        var cls = d==thisDate ? ' class="today"' : ''
+        cols.push('<td'+cls+'><a href="#" class="cell">'+d+'</a></td>')
+        if ((d+day) % 7==0) cols.push('</tr><tr>')
+        theday = new Date(theday.getTime())
+        theday.setDate(theday.getDate()+1)
+        if (theday.getMonth() != firstday.getMonth()) break
+      }
+      var col = (d+day)%7 //column index of the 1st day of next month
+      for (var i=col;i<7;i++){
+        cols.push('<td class="light"><a href="#" class="cell nextMonth">'+(i-col+1)+'</a></td>')
+      }
+      cols.push('</tr>')
+      rows.push(cols.join(''))
+      
+      var tbody = document.querySelector('#calendar-body')
+      tbody.innerHTML = rows.join('')
+
+      var cells = document.querySelectorAll('a.cell')
+      for (var i=0;i<cells.length;i++){
+        cells[i].onclick = function(evt){
+          clickOnCell(evt)
+        }
+      }
+    }
+    function clickOnCell(evt){
+      evt.preventDefault()
+      var d = parseInt(evt.currentTarget.innerText)
+      var prevMonth = evt.currentTarget.className.indexOf('prevMonth')>=0 ? true : false
+      var nextMonth = evt.currentTarget.className.indexOf('nextMonth')>=0 ? true : false
+      var thisMonth = !(prevMonth||nextMonth)
+      var targetDate;
+      if (thisMonth){
+        targetDate = new Date(firstday.getFullYear(),firstday.getMonth(),d)
+      }
+      else{
+        var y = firstday.getFullYear()
+        var m = firstday.getMonth()
+        if (nextMonth){
+          //next month
+          if (m==11) {y+=1;m=1}
+          else m+=1
+        }
+        else{
+          //previous month
+          if (m==0) {y-=1;m=11}
+          else m-=1
+        }
+        targetDate = new Date(y,m,d)
+      }
+      insertToDoc(targetDate)
+    }
+    
+    function goPrev(){
+      var m = firstday.getMonth()
+      var y = firstday.getFullYear()
+      if (m==0) { y -= 1;m=11 }
+      else {m-=1}
+      var newToday =  (y==now.getFullYear() && m==now.getMonth()) ? null : new Date(y,m,1)
+      renderCalendar(newToday)
+    }
+    
+    function goNext(){
+      var m = firstday.getMonth()
+      var y = firstday.getFullYear()
+      if (m==11) { y += 1;m=0 }
+      else {m+=1}
+      var newToday =  (y==now.getFullYear() && m==now.getMonth()) ? null : new Date(y,m,1)
+      renderCalendar(newToday)
+    }
+    
+    function insertToDoc(today){
+      //console.log(today)
+      var stopLoading = function(){
+        if (!document.getElementById('keep-after-insertion').checked){
+          google.script.host.close()
+        }
+      }
+      google.script.run.withSuccessHandler(stopLoading).withFailureHandler(stopLoading).insertDate(today.getFullYear(),today.getMonth(),today.getDate());  
+    }
+    
+    window.addEventListener('DOMContentLoaded',function(){
+        renderCalendar()
+        document.getElementById('prev-btn').onclick = function(evt){
+          evt.preventDefault()
+          goPrev()
+        }
+        document.getElementById('next-btn').onclick = function(evt){
+          evt.preventDefault()
+          goNext()
+        }
+        document.getElementById('go-today').onclick = function(evt){
+          evt.preventDefault()
+          renderCalendar()
+        }
+        document.getElementById('calendar-year').onfocus = function(evt){
+          evt.currentTarget.style.border = 'solid 1px blue'
+        }        
+        document.getElementById('calendar-year').onblur = function(evt){
+          evt.currentTarget.style.border = 'none'
+        }        
+        document.getElementById('calendar-year').onchange = function(evt){
+          var y = parseInt(evt.currentTarget.value)
+          if ((!y) || y < 1000 || y > 3000){
+            evt.currentTarget.value = firstday.getFullYear()
+          }
+          else{
+            var newToday = new Date(y,firstday.getMonth(),1)
+            renderCalendar(newToday)
+          }
+        }
+        document.getElementById('calendar-month').onfocus = function(evt){
+          evt.currentTarget.style.border = 'solid 1px blue'
+        }        
+        document.getElementById('calendar-month').onblur = function(evt){
+          evt.currentTarget.style.border = 'none'
+        }        
+        document.getElementById('calendar-month').onchange = function(evt){
+          var m = parseInt(evt.currentTarget.value)
+          if ((!m) || m<1){
+            m = 1
+          }
+          else if (m>12){
+            m = 12
+          }
+          //  evt.currentTarget.value = firstday.getFullMonth()+1
+          var newToday = new Date(firstday.getFullYear(),m-1,1)
+          renderCalendar(newToday)
+        }
+    })
+    </script>
+  </head>
+  <body>
+    <table style="width:100%" id="calendar">
+      <thead id="calendar-head">
+        <tr><th colspan="7" style="text-align:center">
+            <a id="prev-btn" style="float:left">◀</a>
+              <input class="calendar-title" id="calendar-year">▫<input class="calendar-title" id="calendar-month">
+            <a id="next-btn" style="float:right">▶</a>
+          </th></tr>
+      </thead>
+      <tbody id="calendar-body">
+      </tbody>
+      <tfoot>
+      <tr><th colspan="7" style="padding:5px 0px 0px 0px;border-top:solid 1px #e2e2e2">
+        <input type="checkbox" id="keep-after-insertion">
+        <label for="keep-after-insertion">Keep calendar after insertion</label>
+        <span style="float:right"><a href="#" id="go-today">◾ Today</a></span>
+      </th>
+      </tfoot>
+    </table>
+  </body>
+</html>
+
+
